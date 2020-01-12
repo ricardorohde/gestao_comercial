@@ -1,0 +1,124 @@
+object FrFormaPagtoValor: TFrFormaPagtoValor
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  ClientHeight = 106
+  ClientWidth = 283
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PopupMenu = Pop00
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Shape2: TShape
+    Left = 0
+    Top = 0
+    Width = 283
+    Height = 106
+    Align = alClient
+    Pen.Color = 8404992
+    Pen.Width = 4
+    ExplicitLeft = -288
+    ExplicitTop = -71
+    ExplicitWidth = 571
+    ExplicitHeight = 256
+  end
+  object pnTitulo: TRzPanel
+    AlignWithMargins = True
+    Left = 7
+    Top = 7
+    Width = 269
+    Height = 37
+    BorderOuter = fsNone
+    Color = 8404992
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -24
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    object lb_forma_pagto: TLabel
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 263
+      Height = 31
+      Align = alClient
+      Alignment = taCenter
+      Caption = '...'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -24
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      ExplicitWidth = 21
+      ExplicitHeight = 29
+    end
+  end
+  object RzPanel5: TRzPanel
+    AlignWithMargins = True
+    Left = 7
+    Top = 48
+    Width = 269
+    Height = 51
+    Margins.Top = 0
+    BorderOuter = fsNone
+    Color = 8404992
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+    object ed_valor_pagto: TJvCalcEdit
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 263
+      Height = 45
+      Flat = False
+      ParentFlat = False
+      Align = alTop
+      Color = clBtnFace
+      DisplayFormat = ',0.00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -32
+      Font.Name = 'Arial Narrow'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ShowButton = False
+      TabOrder = 0
+      ClipboardCommands = []
+      DecimalPlacesAlwaysShown = True
+    end
+  end
+  object Pop00: TPopupMenu
+    AutoPopup = False
+    Left = 32
+    Top = 60
+    object S1: TMenuItem
+      Caption = 'Selecionar'
+      ShortCut = 13
+      OnClick = S1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object S2: TMenuItem
+      Caption = 'Sair'
+      ShortCut = 27
+      OnClick = S2Click
+    end
+  end
+end

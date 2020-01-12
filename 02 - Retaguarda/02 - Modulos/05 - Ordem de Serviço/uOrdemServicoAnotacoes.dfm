@@ -1,0 +1,51 @@
+object FrOrdemServicoAnotacoes: TFrOrdemServicoAnotacoes
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'FrOrdemServicoAnotacoes'
+  ClientHeight = 204
+  ClientWidth = 447
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzDialogButtons1: TRzDialogButtons
+    Left = 0
+    Top = 168
+    Width = 447
+    HotTrack = True
+    OKDefault = False
+    ModalResultOk = 0
+    OnClickOk = RzDialogButtons1ClickOk
+    TabOrder = 1
+  end
+  object ed_anotacoes: TDBMemo
+    AlignWithMargins = True
+    Left = 2
+    Top = 2
+    Width = 443
+    Height = 164
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    Align = alClient
+    DataField = 'OS_ANOTACOES_SAI'
+    DataSource = dsQuery
+    TabOrder = 0
+    OnEnter = ed_anotacoesEnter
+    OnExit = ed_anotacoesExit
+  end
+  object dsQuery: TDataSource
+    AutoEdit = False
+    DataSet = FrOrdemServico.Query
+    Left = 332
+    Top = 8
+  end
+end

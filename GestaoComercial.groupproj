@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B3752665-34B8-4834-9E46-8A31A303BD79}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01 - Frente de Caixa\01 - Projeto\TechCorePDV.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02 - Retaguarda\01 - Core\App\TechCoreRTG.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TechCorePDV">
+        <MSBuild Projects="01 - Frente de Caixa\01 - Projeto\TechCorePDV.dproj"/>
+    </Target>
+    <Target Name="TechCorePDV:Clean">
+        <MSBuild Projects="01 - Frente de Caixa\01 - Projeto\TechCorePDV.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TechCorePDV:Make">
+        <MSBuild Projects="01 - Frente de Caixa\01 - Projeto\TechCorePDV.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TechCoreRTG">
+        <MSBuild Projects="02 - Retaguarda\01 - Core\App\TechCoreRTG.dproj"/>
+    </Target>
+    <Target Name="TechCoreRTG:Clean">
+        <MSBuild Projects="02 - Retaguarda\01 - Core\App\TechCoreRTG.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TechCoreRTG:Make">
+        <MSBuild Projects="02 - Retaguarda\01 - Core\App\TechCoreRTG.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TechCorePDV;TechCoreRTG"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TechCorePDV:Clean;TechCoreRTG:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TechCorePDV:Make;TechCoreRTG:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
