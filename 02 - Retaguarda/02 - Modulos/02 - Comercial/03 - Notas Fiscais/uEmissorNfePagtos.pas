@@ -181,8 +181,7 @@ var
 
    ValorParcInt, QtdeParcelas: Integer;
    ValorParcela, RestoDivisao: Real;
-
-   ValorPagamentos: Real;
+   ValorPagamentos, TotalParcelas, Centavos, ValorParcelaDividido: Real;
 
 begin
 
@@ -261,12 +260,15 @@ begin
          I := 0;
 
          { Armazena a quantida de parcelas }
-         QtdeParcelas := (FrEmissorNfeDataValor.ed_parcelas.AsInteger);
-         ValorParcela := (ClassNotaFiscal.SubTotal / FrEmissorNfeDataValor.ed_parcelas.AsInteger);
+         QtdeParcelas         := FrEmissorNfeDataValor.ed_parcelas.AsInteger;
+         ValorParcela         := ClassNotaFiscal.SubTotal;
+         ValorParcelaDividido := ClassNotaFiscal.SubTotal / QtdeParcelas;
 
-         { Trunca o valor para duas casas decimais }
-         ValorParcela := Trunca(ValorParcela);
-         RestoDivisao := RoundTo(ClassNotaFiscal.SubTotal - (ValorParcela * QtdeParcelas), -2);
+         // Trunca o valor para duas casas decimais
+         ValorParcelaDividido := Trunca(ValorParcelaDividido);
+
+         // Para verificar a diferencça dos centavos
+         TotalParcelas := ValorParcelaDividido * QtdeParcelas;
 
          repeat
 
@@ -276,10 +278,15 @@ begin
             tbDados.FieldByName('PAG_VENCIMENTO').AsDateTime := IncDay(FrEmissorNfeDataValor.eData.Date, (I * FrEmissorNfeDataValor.ed_dias_entre.AsInteger));
 
             // Joga os centavos caso seja a ultima parcela
-            if I + 1 = FrEmissorNfeDataValor.ed_parcelas.AsInteger then
-               tbDados.FieldByName('PAG_VLR_SUBTOTAL').AsFloat := (ValorParcela + RestoDivisao)
+            if (I + 1 = QtdeParcelas ) and (QtdeParcelas > 1) then
+            begin
+               // Checa se existem centavos a repor
+               Centavos := ValorParcela - TotalParcelas;
+
+               tbDados.FieldByName('PAG_VLR_SUBTOTAL').AsFloat :=  ValorParcelaDividido + Centavos
+            end
             else
-               tbDados.FieldByName('PAG_VLR_SUBTOTAL').AsFloat := ValorParcela;
+               tbDados.FieldByName('PAG_VLR_SUBTOTAL').AsFloat := ValorParcelaDividido;
 
             tbDados.FieldByName('PAG_OBSERVACAO').AsString := FrEmissorNfeDataValor.eObservacao.Text;
             tbDados.Post;

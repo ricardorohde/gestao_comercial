@@ -177,11 +177,11 @@ procedure TFrPedidosVendasPagtos.prcInserirFormaPagto(iFormaPagto: Integer);
 var
    aQuery: TFDQuery;
    pgQuery : TFDQuery;
-   I: Integer;
+   I,F: Integer;
    ValorParcela, ValorCentavos, RestoDivisao: Real;
    ValorTruncado, QtdeParcelas: Integer;
 
-   ValorPagamentos: Real;
+   ValorPagamentos, TotalParcelas, Centavos, ValorParcelaDividido: Real;
 
 begin
    ValorCentavos := 0.00;
@@ -250,8 +250,8 @@ begin
    end;
 
    // Armazena o valor do pedido e o valor das parcelas
-   FrPedidosVendasDataValor.iFormaPagto := iFormaPagto;
-   FrPedidosVendasDataValor.eValorPedido := ValorReceber;
+   FrPedidosVendasDataValor.iFormaPagto     := iFormaPagto;
+   FrPedidosVendasDataValor.eValorPedido    := ValorReceber;
    FrPedidosVendasDataValor.eValorInseridos := ValorPagamentos;
 
    try
@@ -261,13 +261,16 @@ begin
 
          I := 0;
 
-         { Armazena a quantida de parcelas }
-         QtdeParcelas := FrPedidosVendasDataValor.ed_parcelas.AsInteger;
-         ValorParcela := (ValorReceber / FrPedidosVendasDataValor.ed_parcelas.AsInteger);
+         // Armazena a quantida de parcelas
+         QtdeParcelas         := FrPedidosVendasDataValor.ed_parcelas.AsInteger;
+         ValorParcela         := FrPedidosVendasDataValor.eValor.AsInteger;
+         ValorParcelaDividido := FrPedidosVendasDataValor.eValor.AsInteger / QtdeParcelas;
 
-         {Trunca o valor para duas casas decimais}
-         ValorParcela := Trunca(ValorParcela);
-         RestoDivisao := RoundTo( ValorReceber - (ValorParcela * QtdeParcelas), -2 );
+         // Trunca o valor para duas casas decimais
+         ValorParcelaDividido := Trunca(ValorParcelaDividido);
+
+         // Para verificar a diferencça dos centavos
+         TotalParcelas := ValorParcelaDividido * QtdeParcelas;
 
          pgQuery := TFDQuery.Create(self);
          pgQuery.Connection := FrModuloRet.DBConexaoII;
@@ -289,10 +292,16 @@ begin
                   pgQuery.ParamByName('pag_vencimento').AsDateTime := IncDay(FrPedidosVendasDataValor.eData.Date, (I * FrPedidosVendasDataValor.ed_dias_entre.AsInteger));
 
                   // Joga os centavos caso seja a ultima parcela
-                  if I + 1 = FrPedidosVendasDataValor.ed_parcelas.AsInteger then
-                     pgQuery.ParamByName('pag_vlr_subtotal').AsFloat := (ValorParcela + RestoDivisao + ValorCentavos)
+                  if (I + 1 = QtdeParcelas ) and (QtdeParcelas > 1) then
+                  begin
+
+                     // Checa se existem centavos a repor
+                     Centavos := ValorParcela - TotalParcelas;
+
+                     pgQuery.ParamByName('pag_vlr_subtotal').AsFloat := ValorParcelaDividido + Centavos
+                  end
                   else
-                     pgQuery.ParamByName('pag_vlr_subtotal').AsFloat := ValorParcela;
+                     pgQuery.ParamByName('pag_vlr_subtotal').AsFloat := ValorParcelaDividido;
 
                   pgQuery.ParamByName('pag_observacao').AsString   := FrPedidosVendasDataValor.eObservacao.Text;
                   pgQuery.ParamByName('id_pedido').AsInteger       := ClassPedidoVendas.IDPedido;

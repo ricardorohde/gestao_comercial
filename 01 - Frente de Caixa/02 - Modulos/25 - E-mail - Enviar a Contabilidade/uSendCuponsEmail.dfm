@@ -4,7 +4,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
   BorderStyle = bsDialog
   Caption = 'Arquivos XMLs - Enviar por e-mail.'
   ClientHeight = 335
-  ClientWidth = 435
+  ClientWidth = 459
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +12,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  PopupMenu = PopupMenu1
   Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -20,7 +21,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     AlignWithMargins = True
     Left = 0
     Top = 2
-    Width = 435
+    Width = 459
     Height = 41
     Margins.Left = 0
     Margins.Top = 2
@@ -29,6 +30,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 435
     object Label1: TLabel
       Left = 2
       Top = 2
@@ -62,7 +64,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     object ed_tipo: TJvComboBox
       Left = 222
       Top = 17
-      Width = 211
+      Width = 235
       Height = 21
       Style = csDropDownList
       TabOrder = 2
@@ -78,7 +80,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     AlignWithMargins = True
     Left = 2
     Top = 72
-    Width = 431
+    Width = 455
     Height = 177
     Margins.Left = 2
     Margins.Top = 2
@@ -87,13 +89,12 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 431
     object NextDBGrid1: TNextDBGrid
       Left = 0
       Top = 0
-      Width = 431
+      Width = 455
       Height = 177
-      Touch.InteractiveGestures = [igPan, igPressAndTap]
-      Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
       Align = alClient
       AppearanceOptions = [aoHideSelection, aoHighlightSlideCells, aoIndicateSortedColumn]
       Caption = ''
@@ -103,7 +104,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       DataSource = dsQuery
       object NxDBDateColumn1: TNxDBDateColumn
         DefaultValue = '27/03/2019'
-        DefaultWidth = 66
+        DefaultWidth = 71
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -120,7 +121,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
         ParentFont = False
         Position = 0
         SortType = stDate
-        Width = 66
+        Width = 71
         FieldName = 'F_CUPOM_DATA'
         FormatDateMask = 'dd/mm/yyyy'
         HideWhenEmpty = False
@@ -129,13 +130,13 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       end
       object NxDBNumberColumn1: TNxDBNumberColumn
         DefaultValue = '0'
-        DefaultWidth = 50
+        DefaultWidth = 51
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
-        Header.Caption = 'N'#250'mero'
+        Header.Caption = 'Cupom'
         Header.Font.Charset = DEFAULT_CHARSET
         Header.Font.Color = clWindowText
         Header.Font.Height = -11
@@ -146,14 +147,14 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
         ParentFont = False
         Position = 1
         SortType = stNumeric
-        Width = 50
+        Width = 49
         FieldName = 'F_CUPOM_NUMERO'
         FormatMask = '000000'
         Precision = 0
         Increment = 1.000000000000000000
       end
       object NxDBTextColumn1: TNxDBTextColumn
-        DefaultWidth = 272
+        DefaultWidth = 298
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -170,13 +171,13 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
         ParentFont = False
         Position = 2
         SortType = stAlphabetic
-        Width = 272
+        Width = 291
         FieldName = 'F_XML_CHAVE'
       end
       object NxDBImageColumn1: TNxDBImageColumn
         Alignment = taCenter
         DefaultValue = '0'
-        DefaultWidth = 41
+        DefaultWidth = 48
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -194,7 +195,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
         ParentFont = False
         Position = 3
         SortType = stNumeric
-        Width = 41
+        Width = 42
         FieldName = 'F_CUPOM_STATUS'
         Images = ImageList1
         Transparent = True
@@ -204,7 +205,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
   object Panel3: TPanel
     Left = 0
     Top = 249
-    Width = 435
+    Width = 459
     Height = 42
     Margins.Left = 2
     Margins.Top = 2
@@ -213,6 +214,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitWidth = 435
     object Label3: TLabel
       AlignWithMargins = True
       Left = 2
@@ -225,7 +227,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     object ed_email: TEdit
       Left = 2
       Top = 18
-      Width = 431
+      Width = 455
       Height = 21
       TabOrder = 0
     end
@@ -234,7 +236,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     AlignWithMargins = True
     Left = 2
     Top = 45
-    Width = 431
+    Width = 455
     Height = 25
     Margins.Left = 2
     Margins.Top = 2
@@ -244,12 +246,13 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Caption = 'Filtrar'
     TabOrder = 3
     OnClick = bt_filtrarClick
+    ExplicitWidth = 431
   end
   object bt_enviar: TBitBtn
     AlignWithMargins = True
     Left = 2
     Top = 291
-    Width = 431
+    Width = 455
     Height = 25
     Margins.Left = 2
     Margins.Top = 2
@@ -259,15 +262,17 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Caption = 'Enviar'
     TabOrder = 4
     OnClick = bt_enviarClick
+    ExplicitWidth = 431
   end
   object br_Progress: TProgressBar
     Left = 0
     Top = 318
-    Width = 435
+    Width = 459
     Height = 17
     Align = alBottom
     Step = 1
     TabOrder = 5
+    ExplicitWidth = 435
   end
   object Query: TFDQuery
     Connection = FrModulo.DBCon_Local
@@ -291,7 +296,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       Origin = 'F_CUPOM_NUMERO'
       DisplayFormat = '000000'
     end
-    object QueryF_VLR_CUPOM: TBCDField
+    object QueryF_VLR_CUPOM: TFMTBCDField
       FieldName = 'F_VLR_CUPOM'
       Origin = 'F_VLR_CUPOM'
       Precision = 18
@@ -342,7 +347,7 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
     Left = 72
     Top = 216
     Bitmap = {
-      494C0101030005000C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010103000500040010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -501,10 +506,14 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       '   F_XML,'
       '   F_XML_CHAVE,'
       '   F_CUPOM_STATUS,'
-      '   F_VLR_TOTAL AS F_VLR_CUPOM,'
+      '   CAST(F_VLR_TOTAL AS FLOAT) AS F_VLR_CUPOM,'
       ''
-      '   IIF(F_CUPOM_STATUS = 1, F_VLR_TOTAL, 0)  AS F_VLR_CUPOM_A,'
-      '   IIF(F_CUPOM_STATUS = 2, F_VLR_TOTAL, 0)  AS F_VLR_CUPOM_C,'
+      
+        '   IIF(F_CUPOM_STATUS = 1, CAST(F_VLR_TOTAL AS FLOAT), 0)  AS F_' +
+        'VLR_CUPOM_A,'
+      
+        '   IIF(F_CUPOM_STATUS = 2, CAST(F_VLR_TOTAL AS FLOAT), 0)  AS F_' +
+        'VLR_CUPOM_C,'
       '   IIF(F_CUPOM_STATUS = 2, '#39'Cancelado'#39', '#39#39') AS F_CANCELADO,'
       ''
       
@@ -516,7 +525,9 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       'WHERE'
       '   CAST(F_CUPOM_DATA AS DATE) BETWEEN :ADATA AND :FDATA'
       'AND'
-      '   F_CUPOM_DIRETIVA = 1')
+      '   F_CUPOM_DIRETIVA = 1'
+      'ORDER BY'
+      '   ID ASC')
     Left = 152
     Top = 136
     ParamData = <
@@ -524,44 +535,45 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
         Name = 'ADATA'
         DataType = ftString
         ParamType = ptInput
-        Value = '01/01/2018'
+        Value = '12/12/2019'
       end
       item
         Name = 'FDATA'
         DataType = ftString
         ParamType = ptInput
-        Value = '01/01/2020'
+        Value = '01/05/2020'
       end>
-    object IntegerField1: TIntegerField
+    object pQueryF_CUPOM_NUMERO: TIntegerField
       FieldName = 'F_CUPOM_NUMERO'
       Origin = 'F_CUPOM_NUMERO'
       DisplayFormat = '000000'
     end
-    object MemoField1: TMemoField
+    object pQueryF_XML: TMemoField
       FieldName = 'F_XML'
       Origin = 'F_XML'
       BlobType = ftMemo
     end
-    object StringField1: TStringField
+    object pQueryF_XML_CHAVE: TStringField
       FieldName = 'F_XML_CHAVE'
       Origin = 'F_XML_CHAVE'
       Size = 60
     end
-    object BCDField1: TBCDField
+    object pQueryF_VLR_CUPOM: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'F_VLR_CUPOM'
       Origin = 'F_VLR_CUPOM'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object DateField1: TDateField
+    object pQueryF_CUPOM_DATA: TDateField
       AutoGenerateValue = arDefault
       FieldName = 'F_CUPOM_DATA'
       Origin = 'F_CUPOM_DATA'
       ProviderFlags = []
       ReadOnly = True
     end
-    object IntegerField2: TIntegerField
+    object pQueryF_CUPOM_STATUS: TIntegerField
       FieldName = 'F_CUPOM_STATUS'
       Origin = 'F_CUPOM_STATUS'
     end
@@ -574,25 +586,21 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       FixedChar = True
       Size = 9
     end
-    object QueryF_VLR_CUPOM_A: TBCDField
+    object pQueryF_VLR_CUPOM_A: TSingleField
       AutoGenerateValue = arDefault
       FieldName = 'F_VLR_CUPOM_A'
       Origin = 'F_VLR_CUPOM_A'
       ProviderFlags = []
       ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryF_VLR_CUPOM_C: TBCDField
+    object pQueryF_VLR_CUPOM_C: TSingleField
       AutoGenerateValue = arDefault
       FieldName = 'F_VLR_CUPOM_C'
       Origin = 'F_VLR_CUPOM_C'
       ProviderFlags = []
       ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
     object pQueryF_CAIXA_DESCRICAO: TStringField
       AutoGenerateValue = arDefault
@@ -601,6 +609,14 @@ object FrSendCuponsEmail: TFrSendCuponsEmail
       ProviderFlags = []
       ReadOnly = True
       Size = 35
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 188
+    Top = 136
+    object Impressora1: TMenuItem
+      Caption = 'Impressora'
+      ShortCut = 16503
     end
   end
 end

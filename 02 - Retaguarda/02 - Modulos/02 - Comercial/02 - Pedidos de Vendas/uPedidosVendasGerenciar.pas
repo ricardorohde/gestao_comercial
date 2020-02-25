@@ -1023,7 +1023,7 @@ begin
          nfeQueryItens.SQL.Add('Select');
          nfeQueryItens.SQL.Add('    t1.id_produto, t1.prd_ncm, t1.prd_ncm_ex, t1.prd_cest, t1.prd_origem, t1.id_tributos,');
          nfeQueryItens.SQL.Add('    t1.prd_qtde, t1.prd_vlr_unitario, t1.prd_vlr_subtotal, t1.prd_informacoes, t2.prd_codigo,');
-         nfeQueryItens.SQL.Add('    t2.prd_codigo_ter, t2.prd_codigo_brr,  t2.prd_descricao, t2.prd_unidade');
+         nfeQueryItens.SQL.Add('    t2.prd_codigo_brr,  t2.prd_descricao, t2.prd_unidade');
          nfeQueryItens.SQL.Add('from');
          nfeQueryItens.SQL.Add('    C000101 as t1');
          nfeQueryItens.SQL.Add('join');
@@ -1042,15 +1042,14 @@ begin
             repeat
                nfeQuery.SQL.Clear;
                nfeQuery.SQL.Add('Insert Into C000601(');
-               nfeQuery.SQL.Add('   prd_codigo, prd_codigo_ter, prd_codigo_barras, prd_descricao, prd_unidade, prd_ncm, prd_ncm_ex, prd_cest,');
+               nfeQuery.SQL.Add('   prd_codigo, prd_codigo_barras, prd_descricao, prd_unidade, prd_ncm, prd_ncm_ex, prd_cest,');
                nfeQuery.SQL.Add('   prd_origem, prd_inclusao, id_nota_fiscal, id_produto, id_tributos, prd_qtde, prd_vlr_unitario,');
                nfeQuery.SQL.Add('   prd_vlr_subtotal, prd_informacoes');
                nfeQuery.SQL.Add(')values(');
-               nfeQuery.SQL.Add('   :prd_codigo, :prd_codigo_ter, :prd_codigo_barras, :prd_descricao, :prd_unidade, :prd_ncm, :prd_ncm_ex, :prd_cest,');
+               nfeQuery.SQL.Add('   :prd_codigo, :prd_codigo_barras, :prd_descricao, :prd_unidade, :prd_ncm, :prd_ncm_ex, :prd_cest,');
                nfeQuery.SQL.Add('   :prd_origem, :prd_inclusao, :id_nota_fiscal, :id_produto, :id_tributos, :prd_qtde, :prd_vlr_unitario, :prd_vlr_subtotal, :prd_informacoes)');
 
                nfeQuery.ParamByName('prd_codigo').AsInteger       := nfeQueryItens.FieldByName('prd_codigo').AsInteger;
-               nfeQuery.ParamByName('prd_codigo_ter').AsString    := nfeQueryItens.FieldByName('prd_codigo_ter').AsString;
                nfeQuery.ParamByName('prd_codigo_barras').AsString := nfeQueryItens.FieldByName('prd_codigo_brr').AsString;
                nfeQuery.ParamByName('prd_descricao').AsString     := nfeQueryItens.FieldByName('prd_descricao').AsString;
                nfeQuery.ParamByName('prd_unidade').AsString       := nfeQueryItens.FieldByName('prd_unidade').AsString;

@@ -69,7 +69,7 @@ object FrModuloRet: TFrModuloRet
       'Port=3051'
       'CharacterSet=ISO8859_1'
       'DriverID=FB')
-    Connected = True
+    ConnectedStoredUsage = []
     LoginPrompt = False
     Left = 40
     Top = 12

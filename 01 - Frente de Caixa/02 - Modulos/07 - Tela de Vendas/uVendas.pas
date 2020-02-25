@@ -1094,7 +1094,6 @@ function TFrVendas.Gerar_Cupom_Fiscal: Boolean;
 var
    aQuery, bQuery, kQuery: TFDQuery;
    r_TotalLei12741: Real;
-   sInfos, sInfosOld: String;
    nRec: Integer;
 begin
    nRec := 0;
@@ -1166,35 +1165,35 @@ begin
                         begin
                            nItem := nRec;
                            Prod.cProd := Format('%.6d', [kQuery.FieldByName('prd_codigo').AsInteger]);
-                           Prod.cEAN := kQuery.FieldByName('prd_codigo_barras').AsString;
+                           Prod.cEAN  := kQuery.FieldByName('prd_codigo_barras').AsString;
 
                            if kQuery.FieldByName('prd_descricao_curta').IsNull then
                               Prod.xProd := kQuery.FieldByName('prd_descricao').AsString
                            else
                               Prod.xProd := kQuery.FieldByName('prd_descricao_curta').AsString;
 
-                           Prod.NCM := kQuery.FieldByName('prd_ncm').AsString;
-                           Prod.CFOP := kQuery.FieldByName('prd_cfop').AsString;
-                           Prod.uCom := kQuery.FieldByName('prd_unidade').AsString;
-                           Prod.qCom := (kQuery.FieldByName('prd_qtde').AsInteger * aQuery.FieldByName('f_qtde').AsInteger);
-                           Prod.vUnCom := kQuery.FieldByName('prd_valor').AsFloat;
+                           Prod.NCM      := kQuery.FieldByName('prd_ncm').AsString;
+                           Prod.CFOP     := kQuery.FieldByName('prd_cfop').AsString;
+                           Prod.uCom     := kQuery.FieldByName('prd_unidade').AsString;
+                           Prod.qCom     := (kQuery.FieldByName('prd_qtde').AsInteger * aQuery.FieldByName('f_qtde').AsInteger);
+                           Prod.vUnCom   := kQuery.FieldByName('prd_valor').AsFloat;
                            Prod.indRegra := irTruncamento;
 
-                           Imposto.ICMS.orig := oeNacional;
+                           Imposto.ICMS.orig  := oeNacional;
                            Imposto.ICMS.CSOSN := csosn102; // Obs.: Criar campo na tabela de produtos
                            Imposto.ICMS.pICMS := 0.00;
 
-                           Imposto.PIS.CST := pis99;
-                           Imposto.PIS.vBC := 0;
+                           Imposto.PIS.CST  := pis99;
+                           Imposto.PIS.vBC  := 0;
                            Imposto.PIS.pPIS := 0;
 
-                           Imposto.COFINS.CST := cof99;
-                           Imposto.COFINS.vBC := 0;
+                           Imposto.COFINS.CST     := cof99;
+                           Imposto.COFINS.vBC     := 0;
                            Imposto.COFINS.pCOFINS := 0;
                         end;
 
                         // Calculos individuais dos impostos
-                        // r_TotalLei_IMP  := r_TotalLei_IMP + ( aQuery.FieldByName('f_vlr_sub_total').AsFloat * aQuery.FieldByName('f_ncm_taxa_imp').AsFloat) / 100;
+                        //r_TotalLei_IMP  := r_TotalLei_IMP + ( aQuery.FieldByName('f_vlr_sub_total').AsFloat * aQuery.FieldByName('f_ncm_taxa_imp').AsFloat) / 100;
                         r_TotalLei_NAC := r_TotalLei_NAC + (kQuery.FieldByName('prd_total').AsFloat * kQuery.FieldByName('prd_ncm_taxa_nac').AsFloat) / 100;
                         r_TotalLei_EST := r_TotalLei_EST + (kQuery.FieldByName('prd_total').AsFloat * kQuery.FieldByName('prd_ncm_taxa_est').AsFloat) / 100;
                         r_TotalLei_MUN := 0.00;
@@ -1286,26 +1285,16 @@ begin
                with Pagto.Add do
                begin
                   case bQuery.FieldByName('frm_codigo').AsInteger of
-                     01:
-                        cMP := mpDinheiro;
-                     02:
-                        cMP := mpCheque;
-                     03:
-                        cMP := mpCartaodeCredito;
-                     04:
-                        cMP := mpCartaodeDebito;
-                     05:
-                        cMP := mpCreditoLoja;
-                     10:
-                        cMP := mpValeAlimentacao;
-                     11:
-                        cMP := mpValeRefeicao;
-                     12:
-                        cMP := mpValePresente;
-                     13:
-                        cMP := mpValeCombustivel;
-                     99:
-                        cMP := mpOutros;
+                     01 : cMP := mpDinheiro;
+                     02 : cMP := mpCheque;
+                     03 : cMP := mpCartaodeCredito;
+                     04 : cMP := mpCartaodeDebito;
+                     05 : cMP := mpCreditoLoja;
+                     10 : cMP := mpValeAlimentacao;
+                     11 : cMP := mpValeRefeicao;
+                     12 : cMP := mpValePresente;
+                     13 : cMP := mpValeCombustivel;
+                     99 : cMP := mpOutros;
                   end;
 
                   vMP := RoundABNT(bQuery.FieldByName('frm_parcela_valor').AsFloat, -2);
@@ -1315,30 +1304,6 @@ begin
                // Próximo pagamento
                bQuery.Next;
             until (bQuery.Eof);
-
-            // Armazena os dados padrões antes da nova formatação
-            sInfosOld := ObjSat.Extrato.Sistema;
-
-            // Exibe o total de impostos
-            sInfos := '</zera>';
-            sInfos := sInfos + '</ae><c>' + PadSpace('Tributos Aproximados: R$ Fed: ' + FormatFloat(',0.00', r_TotalLei_NAC) + '|' + ' Est: ' + FormatFloat(',0.00', r_TotalLei_EST)
-               + '|' + ' Mun: ' + FormatFloat(',0.00', r_TotalLei_MUN), Trunc(ACBrPosPrinter1.ColunasFonteCondensada), '|');
-
-            sInfos := sInfos + '</ae><c>' + 'Fonte: ' + FEmpresaClass.Ncm_Fonte + ' - ' + 'Chave: ' + FEmpresaClass.Ncm_Chave;
-
-            sInfos := sInfos + '</lf>';
-
-            // Informações básicas
-            sInfos := sInfos + '</linha_simples>';
-            sInfos := sInfos + '</ae><c>' + PadSpace('LJ: ' + Format('%.2d', [FEmpresaClass.Codigo]) + '|' + 'CX: ' + Format('%.2d', [ObjCaixa.Caixa_Codigo]) + '|' + 'OP: ' +
-               Format('%.3d', [ObjOperador.Opr_Codigo]) + '-' + ObjOperador.Opr_Apelido + '|' + 'VD: ' + Format('%.2d', [Obj_Vendedores.F_Codigo]) + '-' + Obj_Vendedores.F_Apelido
-               + '|' + 'COO: ' + Format('%.6d', [Cupom_Fiscal.F_Numero]), Trunc(ACBrPosPrinter1.ColunasFonteCondensada), '|');
-
-            sInfos := sInfos + '</linha_simples>';
-            sInfos := sInfos + '<ce><c>' + sInfosOld;
-
-            // Espaço utilizado para gerar as informações sobre a loja vendedor e impostos
-            ObjSat.Extrato.Sistema := sInfos;
 
             // Gera o cupom fiscal
             v_Arquivo_XML := ObjSat.CFe.GerarXML(true);
@@ -1365,26 +1330,10 @@ procedure TFrVendas.finalizar_vendaClick(Sender: TObject);
 var
    Str: String;
    QueryCelular: TFDQuery;
-   PrintExtratoII: TACBrSATExtratoESCPOS;
+   sInfos, sInfoSistema, sInfoSite : String;
 begin
 
    Str := lbTitulo.Caption;
-
-   {
-     Data:       23/06/2019
-     Autor:      Winston Moreira
-     Aplicação:  Componente para impressão de cupons fiscais
-     Descrição:  Devido a configurações diversas no rodapé do cupom, foi necessário criar o componente em tempo de execução,
-     assim são carregados novos parâmetros a cada nova impressão
-   }
-   PrintExtratoII := TACBrSATExtratoESCPOS.Create(self);
-
-   // Configura o objeto extrato
-   PrintExtratoII.Sistema := 'TechCore-PDV';
-   PrintExtratoII.Site := 'http://techcore.com.br';
-
-   PrintExtratoII.PosPrinter := ACBrPosPrinter1;
-   ObjSat.Extrato := PrintExtratoII;
 
    { -----------------------------------------------------------------------------------
      Autor:      Winston Moreira
@@ -1491,17 +1440,8 @@ begin
          if Tipo_Impressora = 1 then
          begin
 
-            if ACBrPosPrinter1.Modelo = ppEscPosEpson then
-            begin
-               ACBrPosPrinter1.EspacoEntreLinhas := 50;
-               ACBrPosPrinter1.LinhasEntreCupons := 5;
-            end;
-
             if ACBrPosPrinter1.Modelo = ppEscBematech then
-            begin
                ACBrPosPrinter1.EspacoEntreLinhas := 1;
-               ACBrPosPrinter1.LinhasEntreCupons := 3;
-            end;
 
             // Inicializa o sat
             if Inicializa_SAT then
@@ -1563,8 +1503,72 @@ begin
                      end;
 
                      Imprime_display('Imprimindo cupom fiscal', clWhite);
+                     sInfoSistema := objsat.extrato.sistema;
+                     sInfoSite    := objsat.extrato.Site;
+
+                     // Pulo do gato para não imprimir uma linha acima do rodapé personalizado
+                     objsat.extrato.sistema := '';
+                     objsat.extrato.Site    := '';
+
+                     ACBrPosPrinter1.CortaPapel := false;
                      ObjSat.ImprimirExtrato;
+
+                     // Exibe o total de impostos
+                     sInfos := '</zera>';
+                     sInfos := sInfos + '</ae><c>' + PadSpace(
+                              'Tributos Aproximados: R$ Fed: ' + FormatFloat(',0.00', r_TotalLei_NAC)
+                              + '|'
+                              + ' Est: ' + FormatFloat(',0.00', r_TotalLei_EST)
+                              + '|'
+                              + ' Mun: ' + FormatFloat(',0.00', r_TotalLei_MUN)
+                              , ACBrPosPrinter1.ColunasFonteCondensada
+                              , '|'
+                     );
+
+                     sInfos := sInfos + PadSpace(
+                              'Fonte: ' + FEmpresaClass.Ncm_Fonte
+                              + ' - '
+                              + 'Chave: ' + FEmpresaClass.Ncm_Chave
+                              , ACBrPosPrinter1.ColunasFonteCondensada
+                              , '|'
+                     );
+
+                     // Informações básicas
+                     sInfos := sInfos + '</linha_simples>';
+                     sInfos := sInfos + '</ae><c>' + PadSpace(
+                              'LJ: ' + Format('%.2d', [FEmpresaClass.Codigo])
+                              + '|'
+                              + 'CX: ' + Format('%.2d', [ObjCaixa.Caixa_Codigo])
+                              + '|'
+                              + 'OP: ' + Format('%.3d', [ObjOperador.Opr_Codigo]) + '-' + ObjOperador.Opr_Apelido
+                              + '|'
+                              + 'VD: ' + Format('%.2d', [Obj_Vendedores.F_Codigo]) + '-' + Obj_Vendedores.F_Apelido
+                              + '|'
+                              + 'COO: ' + Format('%.6d', [Cupom_Fiscal.F_Numero])
+                              , ACBrPosPrinter1.ColunasFonteCondensada
+                              , '|');
+
+                     // Roda-pé personalizado
+                     ACBrPosPrinter1.ImprimirLinha(sInfos);
+                     ACBrPosPrinter1.ImprimirLinha('</linha_simples>');
+                     ACBrPosPrinter1.ImprimirLinha(sInfoSistema + ' - ' + sInfoSite);
+
+                     // Retonra os valores para seu devidos campos
+                     objsat.extrato.sistema := sInfoSistema;
+                     objsat.extrato.Site    := sInfoSite;
+
+                     // Pula duas linhas
+                     ACBrPosPrinter1.ImprimirLinha('</lf>');
+                     ACBrPosPrinter1.ImprimirLinha('</lf>');
+
+                     // Corta o papel
+                     ACBrPosPrinter1.CortarPapel(true);
+
+                     // Desativa a comunicação com a impressora
                      ACBrPosPrinter1.Desativar;
+                     ACBrPosPrinter1.LinhasEntreCupons := 0;
+                     ACBrPosPrinter1.CortaPapel        := true;
+
                   end
                   else
                   begin

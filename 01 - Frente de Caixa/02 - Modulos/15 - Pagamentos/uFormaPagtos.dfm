@@ -717,6 +717,11 @@ object FrFormaPagtos: TFrFormaPagtos
       ShortCut = 120
       OnClick = Outros1Click
     end
+    object Impressora1: TMenuItem
+      Caption = 'Impressora'
+      ShortCut = 16503
+      OnClick = Impressora1Click
+    end
     object N1: TMenuItem
       Caption = '-'
     end
@@ -2446,7 +2451,6 @@ object FrFormaPagtos: TFrFormaPagtos
     Top = 172
   end
   object vQuery: TFDQuery
-    Active = True
     Connection = FrModulo.DBCon_Local
     SQL.Strings = (
       'SELECT * FROM C000010')

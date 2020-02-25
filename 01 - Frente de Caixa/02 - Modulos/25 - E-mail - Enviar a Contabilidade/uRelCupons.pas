@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, RLBarcode, System.MaskUtils;
+  FireDAC.Comp.Client, RLBarcode, System.MaskUtils, RLParser;
 
 type
   TFrRelCupons = class(TForm)
@@ -49,6 +49,7 @@ type
     RLDraw2: TRLDraw;
     RLLabel3: TRLLabel;
     RLSystemInfo3: TRLSystemInfo;
+    RLExpressionParser1: TRLExpressionParser;
     procedure RLLabel16BeforePrint(Sender: TObject; var AText: string;
       var PrintIt: Boolean);
     procedure RLLabel1BeforePrint(Sender: TObject; var AText: string;

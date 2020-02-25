@@ -89,6 +89,7 @@ type
       DBText1: TDBText;
       DBText2: TDBText;
       DBText3: TDBText;
+    Impressora1: TMenuItem;
       procedure FormShow(Sender: TObject);
       procedure FormCreate(Sender: TObject);
       procedure Dinheiro1Click(Sender: TObject);
@@ -107,6 +108,7 @@ type
       procedure ValePresente1Click(Sender: TObject);
       procedure Outros1Click(Sender: TObject);
       procedure DBMemo1Exit(Sender: TObject);
+    procedure Impressora1Click(Sender: TObject);
    private
       { Private declarations }
       procedure P_Inserir_Forma_De_Pagamento(iCodigo, ID_Forma: Integer; sDescricao: String);
@@ -206,6 +208,11 @@ end;
 procedure TFrFormaPagtos.FormShow(Sender: TObject);
 begin
    Imprime_display('Fechamento do Cupom.', clWhite);
+end;
+
+procedure TFrFormaPagtos.Impressora1Click(Sender: TObject);
+begin
+   FrVendas.T1Click(self);
 end;
 
 procedure TFrFormaPagtos.Outros1Click(Sender: TObject);

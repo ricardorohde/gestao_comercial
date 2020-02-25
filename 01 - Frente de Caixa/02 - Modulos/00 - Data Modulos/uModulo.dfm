@@ -9,13 +9,14 @@ object FrModulo: TFrModulo
       'Password=masterkey'
       
         'Database=G:\Projetos\GestaoComercial\01 - Frente de Caixa\04 - B' +
-        'D\sysFrenteCaixa.FDB'
+        'D\sysFrenteCaixa.fdb'
       'Protocol=TCPIP'
       'Server=127.0.0.1'
       'Port=3051'
       'CharacterSet=ISO8859_1'
       'DriverID=FB')
     ConnectedStoredUsage = []
+    Connected = True
     LoginPrompt = False
     Left = 30
     Top = 60
@@ -35,7 +36,6 @@ object FrModulo: TFrModulo
       'PageSize=16384'
       'CharacterSet=ISO8859_1')
     ConnectedStoredUsage = []
-    Connected = True
     LoginPrompt = False
     OnError = DBCon_RemotoError
     Left = 30

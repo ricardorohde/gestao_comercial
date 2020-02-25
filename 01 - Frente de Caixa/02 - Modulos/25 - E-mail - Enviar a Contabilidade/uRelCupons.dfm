@@ -363,6 +363,7 @@ object FrRelCupons: TFrRelCupons
           Alignment = taRightJustify
           DataField = 'F_VLR_CUPOM'
           DataSource = dsQuery
+          DisplayMask = ',0.00'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -11
@@ -491,5 +492,9 @@ object FrRelCupons: TFrRelCupons
     DataSet = FrSendCuponsEmail.pQuery
     Left = 12
     Top = 40
+  end
+  object RLExpressionParser1: TRLExpressionParser
+    Left = 405
+    Top = 304
   end
 end

@@ -25263,13 +25263,14 @@ object FrVendas: TFrVendas
         Name = 'ID_EMPRESA'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end
       item
         Name = 'PRD_DESCRICAO'
         DataType = ftString
         ParamType = ptInput
         Size = 120
+        Value = 'BOMBA'
       end>
     object QueryID: TIntegerField
       FieldName = 'ID'
@@ -25806,6 +25807,7 @@ object FrVendas: TFrVendas
     Top = 624
   end
   object ObjSat: TACBrSAT
+    Extrato = ACBrSATExtratoESCPOS1
     Config.infCFe_versaoDadosEnt = 0.070000000000000010
     Config.ide_numeroCaixa = 0
     Config.ide_tpAmb = taHomologacao
@@ -25839,7 +25841,8 @@ object FrVendas: TFrVendas
     ConfigQRCode.LarguraModulo = 4
     ConfigQRCode.ErrorLevel = 0
     ConfigModoPagina.Esquerda = 2
-    LinhasEntreCupons = 7
+    LinhasEntreCupons = 0
+    CortaPapel = False
     Left = 112
     Top = 404
   end
@@ -25855,7 +25858,7 @@ object FrVendas: TFrVendas
     Top = 408
   end
   object ACBrSATExtratoESCPOS1: TACBrSATExtratoESCPOS
-    Sistema = 'TechCore-PDV'
+    Sistema = 'TechCore Solu'#231#245'es em Gest'#227'o - PDV'
     Site = 'http://techcore.com.br'
     MargemInferior = 0.800000000000000000
     MargemSuperior = 0.800000000000000000
@@ -25866,6 +25869,7 @@ object FrVendas: TFrVendas
     CasasDecimais.vUnCom = 2
     CasasDecimais.MaskqCom = ',0.00'
     CasasDecimais.MaskvUnCom = ',0.00'
+    ACBrSAT = ObjSat
     MsgAppQRCode = 
       'Consulte o QR Code pelo aplicativo  "De olho na nota", dispon'#237've' +
       'l na AppStore (Apple) e PlayStore (Android)'

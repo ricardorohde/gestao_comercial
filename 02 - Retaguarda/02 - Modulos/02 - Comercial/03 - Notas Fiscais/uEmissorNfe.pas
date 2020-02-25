@@ -949,6 +949,7 @@ begin
 
       if ACBrNFe1.Consultar then
       begin
+
          try
             // Armazena os dados de retorno do cancelamento
             tbDados.Edit;
@@ -1312,6 +1313,7 @@ begin
 
                      tbDados.Post;
                   except
+                     tbDados.Cancel;
                      Raise Exception.Create('Erro ao atualiza o XML na base de dados');
                   end;
                end;
@@ -1372,6 +1374,7 @@ begin
 
                      tbDados.Post;
                   except
+                     tbDados.Cancel;
                      Raise Exception.Create('Erro ao atualiza o XML na base de dados');
                   end;
                end;
@@ -1386,6 +1389,7 @@ begin
                      tbDadosNFE_STATUS.Asinteger := 5; // Nota fiscal denegada
                      tbDados.Post;
                   except
+                     tbDados.Cancel;
                      Raise Exception.Create('Erro ao atualiza o XML na base de dados');
                   end;
                end;
@@ -2591,9 +2595,9 @@ begin
       // Data:       11/08/218                                                                      //
       // Aplicação:  Emissão de notas fiscais                                                       //
       // Descrição:  Checa se permite transferir crédito de ICMS                                    //
-      // 1 - Checa o tipo de operação (Entrada / Saida)                                 //
-      // 2 - Checa se está permitido transferir crédito de ICMS                         //
-      // 3 - Checa o ramo de atividade do emitente para incluir o IPI ou não            //
+      // 1 - Checa o tipo de operação (Entrada / Saida)                                             //
+      // 2 - Checa se está permitido transferir crédito de ICMS                                     //
+      // 3 - Checa o ramo de atividade do emitente para incluir o IPI ou não                        //
       // ------------------------------------------------------------------------------------------ //
 
       // Aviso do Crédito do IPI
@@ -2608,13 +2612,13 @@ begin
          // 1º Monta a parte do texto que exibe o valor
          sAvisoICMs := Copy(FEmpresaClass.MsgCreditoICMS, 1, Pos(';', FEmpresaClass.MsgCreditoICMS));
          sAvisoICMs := StringReplace(sAvisoICMs, ';', ' ', [rfReplaceAll]);
-         sAvisoICMs := sAvisoICMs + FormatFloat('###,###,#0.00', (Total.ICMSTot.vNF * FEmpresaClass.IcmsAliquota) / 100);
+         sAvisoICMs := sAvisoICMs + FormatFloat(',0.00', (Total.ICMSTot.vNF * FEmpresaClass.IcmsAliquota) / 100);
          sAvisoICMsTemp := sAvisoICMs + Copy(FEmpresaClass.MsgCreditoICMS, Pos(';', FEmpresaClass.MsgCreditoICMS) + 1);
 
          // Monta a parte do texto que exibe a aliquota
          sAvisoICMs := Copy(sAvisoICMsTemp, 1, Pos(';', sAvisoICMsTemp));
          sAvisoICMs := StringReplace(sAvisoICMs, ';', ' ', [rfReplaceAll]);
-         sAvisoICMs := sAvisoICMs + FormatFloat('#0.00', FEmpresaClass.IcmsAliquota);
+         sAvisoICMs := sAvisoICMs + FormatFloat(',0.00', FEmpresaClass.IcmsAliquota);
          sAvisoICMs := sAvisoICMs + Copy(sAvisoICMsTemp, Pos(';', sAvisoICMsTemp) + 2);
 
       end;
@@ -2760,7 +2764,7 @@ procedure TFrEmissorNfe.ConfigurarEmissorNFe;
 begin
    { Ajusta a quantidade de casas decimais no danfe }
    ACBrNFe1.DANFE.CasasDecimais.vUnCom := FEmpresaClass.Decimal_Venda;
-   ACBrNFe1.DANFE.CasasDecimais.qCom := FEmpresaClass.Decimal_Qtde;
+   ACBrNFe1.DANFE.CasasDecimais.qCom   := FEmpresaClass.Decimal_Qtde;
 
    with ACBrNFe1.Configuracoes do
    begin

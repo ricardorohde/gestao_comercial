@@ -256,7 +256,7 @@ object FrEmpresas: TFrEmpresas
       Height = 492
       Margins.Top = 1
       Margins.Bottom = 1
-      ActivePage = tabParamNfe
+      ActivePage = TabSheet3
       Align = alClient
       TabOrder = 0
       object tabPrincipal: TTabSheet
@@ -632,6 +632,7 @@ object FrEmpresas: TFrEmpresas
             Font.Height = -13
             Font.Name = 'Calibri'
             Font.Style = []
+            MaxLength = 9
             ParentFont = False
             ParentShowHint = False
             ShowHint = True
@@ -807,6 +808,7 @@ object FrEmpresas: TFrEmpresas
             CharCase = ecUpperCase
             DataField = 'EMP_CNPJ'
             DataSource = dsDados
+            MaxLength = 18
             TabOrder = 7
             OnEnter = eRazaoEnter
             OnExit = eCnpjExit
@@ -831,6 +833,7 @@ object FrEmpresas: TFrEmpresas
             CharCase = ecUpperCase
             DataField = 'EMP_FONEFIXO'
             DataSource = dsDados
+            MaxLength = 13
             TabOrder = 19
             OnEnter = eRazaoEnter
             OnExit = eRazaoExit
@@ -1047,7 +1050,6 @@ object FrEmpresas: TFrEmpresas
             CaptionFont.Height = -13
             CaptionFont.Name = 'Calibri'
             CaptionFont.Style = [fsBold]
-            Enabled = False
             GroupStyle = gsUnderline
             SpaceEvenly = True
             StartYPos = 6
@@ -1111,6 +1113,7 @@ object FrEmpresas: TFrEmpresas
             CharCase = ecUpperCase
             DataField = 'EMP_FONEMOVEL'
             DataSource = dsDados
+            MaxLength = 14
             TabOrder = 20
             OnEnter = eRazaoEnter
             OnExit = eRazaoExit
@@ -1240,6 +1243,7 @@ object FrEmpresas: TFrEmpresas
               CharCase = ecUpperCase
               DataField = 'EMP_RESP_CPF'
               DataSource = dsDados
+              MaxLength = 14
               TabOrder = 1
               OnEnter = eRazaoEnter
               OnExit = eRespCpfExit
@@ -1264,6 +1268,7 @@ object FrEmpresas: TFrEmpresas
               CharCase = ecUpperCase
               DataField = 'EMP_RESP_FONEMOVEL'
               DataSource = dsDados
+              MaxLength = 14
               TabOrder = 4
               OnEnter = eRazaoEnter
               OnExit = eRazaoExit
@@ -1383,7 +1388,6 @@ object FrEmpresas: TFrEmpresas
               Hint = 'Casa decimais para os valores de custos dos produtos.'
               DataSource = dsDados
               DataField = 'EMP_DECIMAL_CUSTO'
-              Alignment = taRightJustify
               MaxLength = 1
               TabOrder = 0
               Max = 4.000000000000000000
@@ -1398,7 +1402,6 @@ object FrEmpresas: TFrEmpresas
               Hint = 'Casas decimais para os valores de custo dos produtos.'
               DataSource = dsDados
               DataField = 'EMP_DECIMAL_VENDA'
-              Alignment = taRightJustify
               MaxLength = 1
               TabOrder = 1
               Max = 4.000000000000000000
@@ -1413,7 +1416,6 @@ object FrEmpresas: TFrEmpresas
               Hint = 'Casas decimais para as quantidades nos pedidos e notas fiscais.'
               DataSource = dsDados
               DataField = 'EMP_DECIMAL_QTDE'
-              Alignment = taRightJustify
               MaxLength = 1
               TabOrder = 2
               Max = 4.000000000000000000
@@ -1816,7 +1818,6 @@ object FrEmpresas: TFrEmpresas
             CaptionFont.Name = 'Calibri'
             CaptionFont.Style = [fsBold]
             Columns = 2
-            Enabled = False
             GroupStyle = gsUnderline
             SpaceEvenly = True
             StartYPos = 0
@@ -1842,7 +1843,6 @@ object FrEmpresas: TFrEmpresas
             CaptionFont.Name = 'Calibri'
             CaptionFont.Style = [fsBold]
             Columns = 2
-            Enabled = False
             GroupStyle = gsUnderline
             SpaceEvenly = True
             StartYPos = 0
@@ -2612,6 +2612,387 @@ object FrEmpresas: TFrEmpresas
           end
         end
       end
+      object TabSheet3: TTabSheet
+        Caption = 'MDF-e'
+        ImageIndex = 6
+        object RzDBRadioGroup3: TRzDBRadioGroup
+          Left = 4
+          Top = 3
+          Width = 235
+          Height = 40
+          DataField = 'EMP_MDF_AMBIENTE'
+          DataSource = dsDados
+          Items.Strings = (
+            '1 - Produ'#231#227'o'
+            '2 - Homologa'#231#227'o')
+          Values.Strings = (
+            '0'
+            '1')
+          Caption = ' Ambiente da MDF-e'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          Columns = 2
+          GroupStyle = gsUnderline
+          SpaceEvenly = True
+          StartYPos = 0
+          TabOrder = 0
+        end
+        object RzGroupBox15: TRzGroupBox
+          Left = 245
+          Top = 3
+          Width = 245
+          Height = 80
+          Caption = ' Ambiente de Produ'#231#227'o.'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          GroupStyle = gsUnderline
+          TabOrder = 1
+          object Label70: TLabel
+            Left = 6
+            Top = 32
+            Width = 43
+            Height = 15
+            Caption = 'N'#250'mero'
+          end
+          object Label71: TLabel
+            Left = 95
+            Top = 32
+            Width = 22
+            Height = 15
+            Caption = 'Lote'
+          end
+          object Label76: TLabel
+            Left = 151
+            Top = 32
+            Width = 27
+            Height = 15
+            Caption = 'S'#233'rie'
+          end
+          object Label82: TLabel
+            Left = 197
+            Top = 32
+            Width = 42
+            Height = 15
+            Caption = 'Modelo'
+          end
+          object RzDBEdit21: TRzDBEdit
+            Left = 6
+            Top = 47
+            Width = 83
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_PNUMERO'
+            TabOrder = 0
+          end
+          object RzDBEdit22: TRzDBEdit
+            Left = 95
+            Top = 47
+            Width = 50
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_PLOTE'
+            TabOrder = 1
+          end
+          object RzDBEdit23: TRzDBEdit
+            Left = 151
+            Top = 47
+            Width = 40
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_PSERIE'
+            TabOrder = 2
+          end
+          object RzDBEdit24: TRzDBEdit
+            Left = 197
+            Top = 47
+            Width = 44
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_PMODELO'
+            TabOrder = 3
+          end
+        end
+        object RzGroupBox16: TRzGroupBox
+          Left = 496
+          Top = 3
+          Width = 245
+          Height = 80
+          Caption = ' Ambiente de Homologa'#231#227'o.'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          GroupStyle = gsUnderline
+          TabOrder = 2
+          object Label78: TLabel
+            Left = 6
+            Top = 32
+            Width = 43
+            Height = 15
+            Caption = 'N'#250'mero'
+          end
+          object Label79: TLabel
+            Left = 95
+            Top = 32
+            Width = 22
+            Height = 15
+            Caption = 'Lote'
+          end
+          object Label80: TLabel
+            Left = 151
+            Top = 32
+            Width = 27
+            Height = 15
+            Caption = 'S'#233'rie'
+          end
+          object Label83: TLabel
+            Left = 197
+            Top = 32
+            Width = 42
+            Height = 15
+            Caption = 'Modelo'
+          end
+          object RzDBEdit25: TRzDBEdit
+            Left = 6
+            Top = 47
+            Width = 83
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_HNUMERO'
+            TabOrder = 0
+          end
+          object RzDBEdit26: TRzDBEdit
+            Left = 95
+            Top = 47
+            Width = 50
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_HLOTE'
+            TabOrder = 1
+          end
+          object RzDBEdit27: TRzDBEdit
+            Left = 151
+            Top = 47
+            Width = 40
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_HSERIE'
+            TabOrder = 2
+          end
+          object RzDBEdit28: TRzDBEdit
+            Left = 197
+            Top = 47
+            Width = 44
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_HMODELO'
+            TabOrder = 3
+          end
+        end
+        object RzDBRadioGroup4: TRzDBRadioGroup
+          Left = 4
+          Top = 44
+          Width = 235
+          Height = 40
+          DataField = 'EMP_MDF_TIPO_DANFE'
+          DataSource = dsDados
+          Items.Strings = (
+            '1 - Retrato'
+            '2 - Paisagem')
+          Values.Strings = (
+            '1'
+            '2')
+          Caption = ' Formato de Impress'#227'o (Danfe)'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          Columns = 2
+          GroupStyle = gsUnderline
+          SpaceEvenly = True
+          StartYPos = 0
+          TabOrder = 3
+        end
+        object RzGroupBox17: TRzGroupBox
+          Left = 4
+          Top = 86
+          Width = 737
+          Height = 48
+          Caption = ' Tipo de Emiss'#227'o / Justificativa'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          GroupStyle = gsUnderline
+          TabOrder = 4
+          object RzDBComboBox7: TRzDBComboBox
+            AlignWithMargins = True
+            Left = 3
+            Top = 22
+            Width = 229
+            Height = 23
+            DataField = 'EMP_MDF_TIPO_EMISSAO'
+            DataSource = dsDados
+            Style = csDropDownList
+            Align = alLeft
+            TabOrder = 0
+            Items.Strings = (
+              'Emiss'#227'o Normal'
+              'Conting'#234'ncia FS-IA'
+              'Conting'#234'ncia SCAN'
+              'Conting'#234'ncia DPEC'
+              'Conting'#234'ncia FS-DA'
+              'Conting'#234'ncia SVC-AN'
+              'Conting'#234'ncia SVC-RS'
+              'Conting'#234'ncia SVC-SP')
+            Values.Strings = (
+              '0'
+              '1'
+              '2'
+              '3'
+              '4'
+              '5'
+              '6'
+              '7')
+          end
+          object RzDBEdit29: TRzDBEdit
+            AlignWithMargins = True
+            Left = 238
+            Top = 22
+            Width = 496
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_TIPO_XJUST'
+            Align = alClient
+            TabOrder = 1
+          end
+        end
+        object RzGroupBox18: TRzGroupBox
+          Left = 4
+          Top = 140
+          Width = 737
+          Height = 62
+          Caption = ' Diret'#243'rios diversos'
+          CaptionFont.Charset = DEFAULT_CHARSET
+          CaptionFont.Color = clWindowText
+          CaptionFont.Height = -13
+          CaptionFont.Name = 'Calibri'
+          CaptionFont.Style = [fsBold]
+          GroupStyle = gsUnderline
+          TabOrder = 5
+          object Label77: TLabel
+            Left = 3
+            Top = 18
+            Width = 132
+            Height = 15
+            Caption = 'Arquivos XSD (Schemas)'
+          end
+          object Label81: TLabel
+            Left = 356
+            Top = 18
+            Width = 100
+            Height = 15
+            Caption = 'Arquivos de (Logs)'
+          end
+          object RzDBButtonEdit4: TRzDBButtonEdit
+            Left = 3
+            Top = 33
+            Width = 347
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_FOLDER_XSD'
+            CharCase = ecUpperCase
+            TabOrder = 0
+            TextHint = 'Diret'#243'rio dos arquivos de Schemas da NF-e'
+            TextHintVisibleOnFocus = True
+            ButtonGlyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF447A96447A96447A96447A96447A96447A96447A9644
+              7A96447A96447A96447A96447A96447A96447A96447A96447A96447A9685CEF5
+              85CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B789C8B789C
+              8B789C8B789C8B789C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFFFFFFFFFFFFFF9C8B7885CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B78FFFFFFFF
+              FFFFFFFFFFFFFFFF9C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFFFFFFFFFFFFFF9C8B7885CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B78FFFFFFFF
+              FFFF9C8B789C8B789C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFF9C8B78A999899BA19D85CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B789C8B789C
+              8B789C8B789AA09D85CEF585CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CE
+              F585CEF585CEF5447A96447A96447A96447A96447A96447A964B83A16AADCF84
+              CCF385CEF585CEF585CEF585CEF585CEF585CEF585CEF5447A96447A9665B0DB
+              65B0DB65B0DB65B0DB5BA0C64A829E447A96447A96447A96447A96447A96447A
+              96447A96447A96447A96447A9665B0DB65B0DB65B0DB62AAD44F85A2A4BFCDFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF447A96447A96
+              447A96447A96447A96A4BFCDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            ButtonNumGlyphs = 1
+            ButtonKind = bkCustom
+            AltBtnWidth = 15
+            ButtonWidth = 21
+            OnButtonClick = RzDBButtonEdit4ButtonClick
+          end
+          object RzDBButtonEdit5: TRzDBButtonEdit
+            Left = 356
+            Top = 33
+            Width = 378
+            Height = 23
+            DataSource = dsDados
+            DataField = 'EMP_MDF_FOLDER_LOG'
+            CharCase = ecUpperCase
+            TabOrder = 1
+            TextHint = 'Diret'#243'rio dos arquivos de Schemas da NF-e'
+            TextHintVisibleOnFocus = True
+            ButtonGlyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF447A96447A96447A96447A96447A96447A96447A9644
+              7A96447A96447A96447A96447A96447A96447A96447A96447A96447A9685CEF5
+              85CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B789C8B789C
+              8B789C8B789C8B789C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFFFFFFFFFFFFFF9C8B7885CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B78FFFFFFFF
+              FFFFFFFFFFFFFFFF9C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFFFFFFFFFFFFFF9C8B7885CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B78FFFFFFFF
+              FFFF9C8B789C8B789C8B7885CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF59C8B78FFFFFFFFFFFF9C8B78A999899BA19D85CEF585CE
+              F585CEF585CEF5447A96447A9685CEF585CEF585CEF585CEF59C8B789C8B789C
+              8B789C8B789AA09D85CEF585CEF585CEF585CEF585CEF5447A96447A9685CEF5
+              85CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CEF585CE
+              F585CEF585CEF5447A96447A96447A96447A96447A96447A964B83A16AADCF84
+              CCF385CEF585CEF585CEF585CEF585CEF585CEF585CEF5447A96447A9665B0DB
+              65B0DB65B0DB65B0DB5BA0C64A829E447A96447A96447A96447A96447A96447A
+              96447A96447A96447A96447A9665B0DB65B0DB65B0DB62AAD44F85A2A4BFCDFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF447A96447A96
+              447A96447A96447A96A4BFCDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            ButtonNumGlyphs = 1
+            ButtonKind = bkCustom
+            AltBtnWidth = 15
+            ButtonWidth = 21
+            OnButtonClick = RzDBButtonEdit5ButtonClick
+          end
+        end
+      end
       object TabSheet1: TTabSheet
         Caption = 'Configura'#231#245'es do Caixa'
         ImageIndex = 4
@@ -3377,6 +3758,73 @@ object FrEmpresas: TFrEmpresas
       Origin = 'EMP_USAR_LOGIN'
       FixedChar = True
       Size = 1
+    end
+    object tbDadosEMP_MDF_AMBIENTE: TIntegerField
+      FieldName = 'EMP_MDF_AMBIENTE'
+      Origin = 'EMP_MDF_AMBIENTE'
+    end
+    object tbDadosEMP_MDF_TIPO_DANFE: TIntegerField
+      FieldName = 'EMP_MDF_TIPO_DANFE'
+      Origin = 'EMP_MDF_TIPO_DANFE'
+    end
+    object tbDadosEMP_MDF_PNUMERO: TIntegerField
+      FieldName = 'EMP_MDF_PNUMERO'
+      Origin = 'EMP_MDF_PNUMERO'
+      DisplayFormat = '000,000'
+    end
+    object tbDadosEMP_MDF_PLOTE: TIntegerField
+      FieldName = 'EMP_MDF_PLOTE'
+      Origin = 'EMP_MDF_PLOTE'
+      DisplayFormat = '000'
+    end
+    object tbDadosEMP_MDF_PSERIE: TIntegerField
+      FieldName = 'EMP_MDF_PSERIE'
+      Origin = 'EMP_MDF_PSERIE'
+      DisplayFormat = '000'
+    end
+    object tbDadosEMP_MDF_HNUMERO: TIntegerField
+      FieldName = 'EMP_MDF_HNUMERO'
+      Origin = 'EMP_MDF_HNUMERO'
+      DisplayFormat = '000,000'
+    end
+    object tbDadosEMP_MDF_HLOTE: TIntegerField
+      FieldName = 'EMP_MDF_HLOTE'
+      Origin = 'EMP_MDF_HLOTE'
+      DisplayFormat = '000'
+    end
+    object tbDadosEMP_MDF_HSERIE: TIntegerField
+      FieldName = 'EMP_MDF_HSERIE'
+      Origin = 'EMP_MDF_HSERIE'
+      DisplayFormat = '000'
+    end
+    object tbDadosEMP_MDF_TIPO_EMISSAO: TIntegerField
+      FieldName = 'EMP_MDF_TIPO_EMISSAO'
+      Origin = 'EMP_MDF_TIPO_EMISSAO'
+    end
+    object tbDadosEMP_MDF_TIPO_XJUST: TStringField
+      FieldName = 'EMP_MDF_TIPO_XJUST'
+      Origin = 'EMP_MDF_TIPO_XJUST'
+      Size = 256
+    end
+    object tbDadosEMP_MDF_FOLDER_XSD: TStringField
+      FieldName = 'EMP_MDF_FOLDER_XSD'
+      Origin = 'EMP_MDF_FOLDER_XSD'
+      Size = 256
+    end
+    object tbDadosEMP_MDF_FOLDER_LOG: TStringField
+      FieldName = 'EMP_MDF_FOLDER_LOG'
+      Origin = 'EMP_MDF_FOLDER_LOG'
+      Size = 256
+    end
+    object tbDadosEMP_MDF_PMODELO: TIntegerField
+      Alignment = taCenter
+      FieldName = 'EMP_MDF_PMODELO'
+      Origin = 'EMP_MDF_PMODELO'
+    end
+    object tbDadosEMP_MDF_HMODELO: TIntegerField
+      Alignment = taCenter
+      FieldName = 'EMP_MDF_HMODELO'
+      Origin = 'EMP_MDF_HMODELO'
     end
   end
   object SqlAux: TFDQuery

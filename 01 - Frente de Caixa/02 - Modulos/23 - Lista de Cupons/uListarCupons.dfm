@@ -331,7 +331,7 @@ object FrListarCupons: TFrListarCupons
     object NxDBDateColumn1: TNxDBDateColumn
       Alignment = taCenter
       DefaultValue = '06/03/2019'
-      DefaultWidth = 50
+      DefaultWidth = 47
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -353,7 +353,7 @@ object FrListarCupons: TFrListarCupons
       SlideBounds.Width = 60
       SlideCaption = 'Data'
       SortType = stDate
-      Width = 47
+      Width = 44
       FieldName = 'F_CUPOM_DATA'
       FormatDateMask = 'dd/mm/yyyy'
       HideWhenEmpty = False
@@ -572,7 +572,7 @@ object FrListarCupons: TFrListarCupons
     object NxDBImageColumn1: TNxDBImageColumn
       Alignment = taCenter
       DefaultValue = '0'
-      DefaultWidth = 45
+      DefaultWidth = 48
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -590,7 +590,7 @@ object FrListarCupons: TFrListarCupons
       ParentFont = False
       Position = 9
       SortType = stNumeric
-      Width = 48
+      Width = 51
       FieldName = 'F_CUPOM_STATUS'
       Images = ImageList1
       Transparent = True

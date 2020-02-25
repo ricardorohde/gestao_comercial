@@ -89,7 +89,6 @@ uses
   uEmissorNfeInfosAdicionais in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeInfosAdicionais.pas' {FrEmissorNfeInfosAdicionais},
   Biblioteca in '..\Includes\Biblioteca.pas',
   uEmissorNfeStatus in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeStatus.pas' {FrEmissorNfeStatus},
-  uEmissorNfeCancelar in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCancelar.pas' {FrEmissorNfeCancelar},
   uEmissorNfeCCe in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCCe.pas' {FrEmissorNfeCCe},
   uEmissorNfeStatusSefaz in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeStatusSefaz.pas' {FrEmissorNfeStatusSefaz},
   uContasReceber in '..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\uContasReceber.pas' {FrContasReceber},
@@ -178,7 +177,20 @@ uses
   uFiltro_Movto_Estoque_For in '..\..\02 - Modulos\01 - Cadastros\06 - Produtos\Relatórios\uFiltro_Movto_Estoque_For.pas' {FrFiltro_Movto_Estoque_For},
   uPedidosVendasGerenciar in '..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendasGerenciar.pas' {FrPedidosVendasGerenciar},
   uPedidosVendasPagtos in '..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendasPagtos.pas' {FrPedidosVendasPagtos},
-  uPedidosVendas in '..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendas.pas' {FrPedidosVendas};
+  uPedidosVendas in '..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendas.pas' {FrPedidosVendas},
+  uEmissorMDFe in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMDFe.pas' {FrEmissorMDFe},
+  uCabecalhoMDFe in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uCabecalhoMDFe.pas' {FrCabecalhoMDFe},
+  Classe.ParametrosMDFe in '..\Classes\Classe.ParametrosMDFe.pas',
+  uMunicipios in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uMunicipios.pas' {FrMunicipios},
+  uPercursoMDFe in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uPercursoMDFe.pas' {FrPercurso},
+  uPercursoUF in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uPercursoUF.pas' {FrPercursoUF},
+  uDoctos in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uDoctos.pas' {FrDoctos},
+  uChavesNFe in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uChavesNFe.pas' {FrChavesNFe},
+  uVeiculoTracao in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uVeiculoTracao.pas' {FrVeiculoTracao},
+  uMotorista in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uMotorista.pas' {FrMotoristas},
+  uEncerramento in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEncerramento.pas' {FrEncerramento},
+  uEmissorNfeCancelar in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCancelar.pas' {FrEmissorNfeCancelar},
+  uEmissorMdfeCancelar in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMdfeCancelar.pas' {FrEmissorMdfeCancelar};
 
 {$R *.res}
 
@@ -190,7 +202,6 @@ begin
    Application.MainFormOnTaskbar := false;
    Application.Title := 'Techcore-RTG';
    Application.CreateForm(TFrModuloRet, FrModuloRet);
-
   try
       // Checa se existem empresas cadastradas
       aQuery := TFDQuery.Create(nil);

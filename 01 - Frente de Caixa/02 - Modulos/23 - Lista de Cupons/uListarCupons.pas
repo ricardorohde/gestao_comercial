@@ -459,24 +459,8 @@ end;
 
 procedure TFrListarCupons.Action1Execute(Sender: TObject);
 var
-   sInfos, sInfosOld : String;
-   PrintExtratoII : TACBrSATExtratoESCPOS;
+   sInfos, sInfoSistema, sInfoSite : String;
 begin
-   {
-      Data:       23/06/2019
-      Autor:      Winston Moreira
-      Aplicação:  Componente para impressão de cupons fiscais
-      Descrição:  Devido a configurações diversas no rodapé do cupom, foi necessário criar o componente em tempo de execução,
-                  assim são carregados novos parâmetros a cada nova impressão
-   }
-   PrintExtratoII := TACBrSATExtratoESCPOS.Create(Self);
-
-   // Configura o objeto extrato
-   PrintExtratoII.Sistema := 'TechCore-PDV';
-   PrintExtratoII.Site    := 'http://techcore.com.br';
-
-   PrintExtratoII.PosPrinter := FrVendas.ACBrPosPrinter1;
-   FrVendas.ObjSat.Extrato   := PrintExtratoII;
 
    case QueryLista.FieldByName('f_cupom_status').AsInteger of
 
@@ -493,43 +477,20 @@ begin
          begin
             parametros_SAT;
 
-            if ACBrPosPrinter1.Modelo = ppEscPosEpson then
-            begin
-               ACBrPosPrinter1.EspacoEntreLinhas := 50;
-               ACBrPosPrinter1.LinhasEntreCupons := 5;
-            end;
-
             if ACBrPosPrinter1.Modelo = ppEscBematech then
-            begin
                ACBrPosPrinter1.EspacoEntreLinhas  := 1;
-               ACBrPosPrinter1.LinhasEntreCupons  := 3;
-            end;
 
             ObjSat.CFe.SetXMLString(QueryLista.FieldByName('f_xml').AsString);
 
             // Armazena os dados padrões antes da nova formatação
-            sInfosOld := ObjSat.Extrato.Sistema;
+            sInfoSistema := ObjSat.Extrato.Sistema;
+            sInfoSite    := ObjSat.Extrato.Site;
+
             ObjSat.Extrato.Sistema := '';
+            ObjSat.Extrato.Site    := '';
 
-
-            // Exibe o total de impostos
-            sInfos := '</zera>';
-            sInfos := sInfos + '</ae><c>' +
-                  PadSpace(
-                     'Tributos. Aproximados: R$ Fed: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_NAC.AsFloat)
-                     + '|'
-                     + ' Est: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_EST.AsFloat)
-                     + '|'
-                     + ' Mun: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_MUN.AsFloat),
-                     Trunc(ACBrPosPrinter1.ColunasFonteCondensada),
-                     '|');
-
-            sInfos := sInfos + '</ae><c>'
-               + 'Fonte: ' + FEmpresaClass.Ncm_Fonte
-               + ' - '
-               + 'Chave: ' + FEmpresaClass.Ncm_Chave;
-
-            sInfos := sInfos + '</lf>';
+            ACBrPosPrinter1.CortaPapel := false;
+            ObjSat.ImprimirExtrato;
 
             // Checa se o objeto vendedor esta ativo
             if Assigned( Obj_Vendedores ) then
@@ -544,10 +505,30 @@ begin
 
             ObjOperador := TObjOperador.Create( QueryListaID_OPERADOR.AsInteger );
 
+
+            // Exibe o total de impostos
+            sInfos := '</zera>';
+            sInfos := sInfos + '</ae><c>' + PadSpace(
+                     'Tributos Aproximados: R$ Fed: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_NAC.AsFloat)
+                     + '|'
+                     + ' Est: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_EST.AsFloat)
+                     + '|'
+                     + ' Mun: ' + FormatFloat(',0.00', QueryListaF_VLR_NCM_MUN.AsFloat)
+                     , ACBrPosPrinter1.ColunasFonteCondensada
+                     , '|'
+            );
+
+            sInfos := sInfos + PadSpace(
+                     'Fonte: ' + FEmpresaClass.Ncm_Fonte
+                     + ' - '
+                     + 'Chave: ' + FEmpresaClass.Ncm_Chave
+                     , ACBrPosPrinter1.ColunasFonteCondensada
+                     , '|'
+            );
+
             // Informações básicas
             sInfos := sInfos + '</linha_simples>';
-            sInfos := sInfos + '</ae><c>' +
-                  PadSpace(
+            sInfos := sInfos + '</ae><c>' + PadSpace(
                      'LJ: ' + Format('%.2d', [FEmpresaClass.Codigo])
                      + '|'
                      + 'CX: ' + Format('%.2d', [ObjCaixa.Caixa_Codigo])
@@ -556,18 +537,31 @@ begin
                      + '|'
                      + 'VD: ' + Format('%.2d', [Obj_Vendedores.F_Codigo]) + '-' + Obj_Vendedores.F_Apelido
                      + '|'
-                     + 'COO: ' + Format('%.6d', [QueryListaF_CUPOM_NUMERO.AsInteger]),
-                     Trunc(ACBrPosPrinter1.ColunasFonteCondensada),
-                     '|');
+                     + 'COO: ' + Format('%.6d', [QueryListaF_CUPOM_NUMERO.AsInteger])
+                     , ACBrPosPrinter1.ColunasFonteCondensada
+                     , '|');
 
-            sInfos := sInfos + '</linha_simples>';
-            sInfos := sInfos + '<ce><c>' + sInfosOld;
 
-            // Espaço utilizado para gerar as informações sobre a loja vendedor e impostos
-            ObjSat.Extrato.Sistema := sInfos;
+            // Roda-pé personalizado
+            ACBrPosPrinter1.ImprimirLinha(sInfos);
+            ACBrPosPrinter1.ImprimirLinha('</linha_simples>');
+            ACBrPosPrinter1.ImprimirLinha(sInfoSistema + ' - ' + sInfoSite);
 
-            ObjSat.ImprimirExtrato;
+            // Retonra os valores para seu devidos campos
+            objsat.extrato.sistema := sInfoSistema;
+            objsat.extrato.Site    := sInfoSite;
+
+            // Pula duas linhas
+            ACBrPosPrinter1.ImprimirLinha('</lf>');
+            ACBrPosPrinter1.ImprimirLinha('</lf>');
+
+            // Corta o papel
+            ACBrPosPrinter1.CortarPapel(true);
+
+            // Desativa a comunicação com a impressora
             ACBrPosPrinter1.Desativar;
+            ACBrPosPrinter1.LinhasEntreCupons := 0;
+            ACBrPosPrinter1.CortaPapel        := true;
          end;
 
       end;

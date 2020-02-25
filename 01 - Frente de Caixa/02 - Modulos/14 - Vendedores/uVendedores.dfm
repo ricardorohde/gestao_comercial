@@ -138,7 +138,7 @@ object FrVendedores: TFrVendedores
       Increment = 1.000000000000000000
     end
     object NxDBHtmlColumn1: TNxDBHtmlColumn
-      DefaultWidth = 483
+      DefaultWidth = 481
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -155,14 +155,14 @@ object FrVendedores: TFrVendedores
       ParentFont = False
       Position = 1
       SortType = stAlphabetic
-      Width = 481
+      Width = 479
       FieldName = 'F_APELIDO'
       DataAwareOptions = []
     end
     object NxDBImageColumn1: TNxDBImageColumn
       Alignment = taCenter
       DefaultValue = '0'
-      DefaultWidth = 53
+      DefaultWidth = 55
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -180,7 +180,7 @@ object FrVendedores: TFrVendedores
       ParentFont = False
       Position = 2
       SortType = stNumeric
-      Width = 55
+      Width = 57
       FieldName = 'F_STATUS'
       Images = ImageList1
       Transparent = True
@@ -196,6 +196,8 @@ object FrVendedores: TFrVendedores
     Margins.Right = 2
     Margins.Bottom = 2
     HotTrack = True
+    ModalResultOk = 0
+    OnClickOk = S1Click
     TabOrder = 2
     VisualStyle = vsGradient
   end

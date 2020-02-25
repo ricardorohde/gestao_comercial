@@ -234,6 +234,9 @@ type
     dxBarButton22: TdxBarButton;
     dxBarButton23: TdxBarButton;
     dxBarManager1Bar18: TdxBar;
+    Action25: TAction;
+    dxBarButton24: TdxBarButton;
+    dxBarLargeButton52: TdxBarLargeButton;
       procedure actCadastroEmpresasExecute(Sender: TObject);
       procedure actCadastrarUsersExecute(Sender: TObject);
       procedure actGrupoProdutosExecute(Sender: TObject);
@@ -297,6 +300,7 @@ type
     procedure Action23Execute(Sender: TObject);
     procedure Agrupadoporcliente1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Action25Execute(Sender: TObject);
    private
       { Private declarations }
    public
@@ -329,7 +333,7 @@ Uses
    uPrFiltroEtiquetas3x21, uConfigFinanceiro, Classe.Financeiro,
    uContasCaixas, uDreFiltro, Classe.NFe, uImportarNfe,
    uMovtoEstoque, uConfigEstoque, uOrdemServicoConfig,
-  UFiltro_Movto_Estoque_For;
+  UFiltro_Movto_Estoque_For, uEmissorMDFe;
 
 procedure TFrPrincipal.acClientesExecute(Sender: TObject);
 begin
@@ -640,6 +644,17 @@ begin
    end;
 end;
 
+procedure TFrPrincipal.Action25Execute(Sender: TObject);
+begin
+   if not Assigned(FrEmissorMDFe) then
+   begin
+      FrEmissorMDFe := TFrEmissorMDFe.Create(self);
+      FrEmissorMDFe.Show;
+   end
+   else
+      FrEmissorMDFe.BringToFront
+end;
+
 procedure TFrPrincipal.Action2Execute(Sender: TObject);
 begin
    if not Assigned(FrSubGruposProdutos) then
@@ -933,8 +948,6 @@ begin
 end;
 
 procedure TFrPrincipal.FormShow(Sender: TObject);
-var
-   aQuery: TFDQuery;
 begin
    { Proteção do sistema }
    StartForm.executar;

@@ -110,8 +110,6 @@ object FrImportarVendaCelularPesquisar: TFrImportarVendaCelularPesquisar
     Margins.Top = 2
     Margins.Right = 2
     Margins.Bottom = 0
-    Touch.InteractiveGestures = [igPan, igPressAndTap]
-    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     Align = alClient
     AppearanceOptions = [aoBoldTextSelection, aoHideSelection, aoHighlightSlideCells]
     BorderStyle = bsNone
@@ -420,14 +418,15 @@ object FrImportarVendaCelularPesquisar: TFrImportarVendaCelularPesquisar
     end
   end
   object DBRest: TRESTDWDataBase
-    Active = False
+    Active = True
     Compression = True
+    MyIP = '127.0.0.1'
     Login = 'testserver'
     Password = 'testserver'
     Proxy = False
     ProxyOptions.Port = 8888
-    PoolerService = '192.168.15.200'
-    PoolerPort = 1999
+    PoolerService = '127.0.0.1'
+    PoolerPort = 8082
     PoolerName = 'TServerMethodDM.RESTDWPoolerDB1'
     StateConnection.AutoCheck = False
     StateConnection.InTime = 1000
@@ -446,7 +445,62 @@ object FrImportarVendaCelularPesquisar: TFrImportarVendaCelularPesquisar
     Top = 120
   end
   object Query: TRESTDWClientSQL
-    FieldDefs = <>
+    Active = True
+    Filtered = False
+    FieldDefs = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'ID_EMPRESA'
+        DataType = ftInteger
+      end
+      item
+        Name = 'ID_VENDEDOR'
+        DataType = ftInteger
+      end
+      item
+        Name = 'DATA_VENDA'
+        DataType = ftTimeStamp
+      end
+      item
+        Name = 'PRE_CODIGO_VENDA'
+        DataType = ftString
+        Size = 25
+      end
+      item
+        Name = 'PRE_VLR_SUBTOTAL'
+        DataType = ftFMTBcd
+        Precision = 62
+        Size = 4
+      end
+      item
+        Name = 'PRE_VLR_DESCONTO'
+        DataType = ftFMTBcd
+        Precision = 62
+        Size = 4
+      end
+      item
+        Name = 'PRE_MGR_DESCONTO'
+        DataType = ftFMTBcd
+        Precision = 62
+        Size = 4
+      end
+      item
+        Name = 'PRE_VLR_TOTAL'
+        DataType = ftFMTBcd
+        Size = 4
+      end
+      item
+        Name = 'PRE_STATUS'
+        DataType = ftInteger
+      end
+      item
+        Name = 'VENDEDOR'
+        DataType = ftString
+        Size = 80
+      end>
     IndexDefs = <>
     FetchOptions.AssignedValues = [evMode]
     FetchOptions.Mode = fmAll
@@ -542,7 +596,7 @@ object FrImportarVendaCelularPesquisar: TFrImportarVendaCelularPesquisar
     Left = 280
     Top = 120
     Bitmap = {
-      494C010103000800380010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

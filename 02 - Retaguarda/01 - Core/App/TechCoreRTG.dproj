@@ -1,14 +1,14 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{1A084F09-4321-4ED8-AD51-0E46A307007F}</ProjectGuid>
-        <ProjectVersion>18.7</ProjectVersion>
-        <FrameworkType>VCL</FrameworkType>
+        <ProjectGuid>{C5307EA3-59AC-41BE-9B6F-5703235AF296}</ProjectGuid>
         <MainSource>TechCoreRTG.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <TargetedPlatforms>1</TargetedPlatforms>
+        <TargetedPlatforms>1025</TargetedPlatforms>
         <AppType>Application</AppType>
+        <FrameworkType>VCL</FrameworkType>
+        <ProjectVersion>18.7</ProjectVersion>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -18,7 +18,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
         <Cfg_1>true</Cfg_1>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
@@ -29,9 +34,15 @@
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='iOSDevice64' and '$(Cfg_2)'=='true') or '$(Cfg_2_iOSDevice64)'!=''">
+        <Cfg_2_iOSDevice64>true</Cfg_2_iOSDevice64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
@@ -41,82 +52,62 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Keys>CompanyName=TechCore Soluções em Gestão;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Locale>1046</VerInfo_Locale>
-        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
-        <DCC_N>false</DCC_N>
-        <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-        <DCC_UsePackage>RESTComponents;emsclientfiredac;DataSnapFireDAC;FireDACIBDriver;emsclient;FireDACCommon;RESTBackendComponents;soapserver;CloudService;FireDACCommonDriver;inet;FireDAC;FireDACSqliteDriver;soaprtl;soapmidas;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_ImageBase>00400000</DCC_ImageBase>
         <SanitizedProjectName>TechCoreRTG</SanitizedProjectName>
+        <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Locale>1046</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=;CFBundleName=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Icon_MainIcon>favicon (1).ico</Icon_MainIcon>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <AppEnableHighDPI>true</AppEnableHighDPI>
-        <VerInfo_PreRelease>true</VerInfo_PreRelease>
-        <VerInfo_Debug>true</VerInfo_Debug>
-        <DCC_UsePackage>DBXSqliteDriver;fmxase;DBXInterBaseDriver;vclactnband;ACBr_TEFD;vclFireDAC;ACBr_SATWS;tethering;svnui;JvGlobus;FireDACADSDriver;frxe25;JvPluginSystem;ACBr_BPe;JvMM;OrpheusDR;ACBr_MDFeDamdfeRL;DatasnapConnectorsFreePascal;FireDACMSSQLDriver;PngComponentsD;vcltouch;JvBands;ACBr_NFe;vcldb;bindcompfmx;svn;JvJans;JvNet;ACBr_NFeDanfeFR;inetdb;JvAppFrm;ACBr_NFeDanfeESCPOS;ACBr_Diversos;RaizeComponentsVcl;ACBr_TXTComum;ACBr_GNREGuiaFR;JvDotNetCtrls;emsedge;RaizeComponentsVclDb;fmx;fmxdae;frxDB25;ACBr_CTeDacteFR;frxTee25;JvWizards;ACBr_Ponto;FireDACDBXDriver;dbexpress;IndyCore;OrpheusDBDR;ACBr_NFSeDanfseFR;OnGuardDR;vclx;JvPageComps;dsnap;DataSnapCommon;ACBr_SATExtratoRL;JvDB;ACBr_PCNComum;DataSnapConnectors;ACBR_DeSTDA;VCLRESTComponents;ACBr_Reinf;ACBr_SAT;JclDeveloperTools;vclie;fs25;bindengine;DBXMySQLDriver;FireDACOracleDriver;FireDACMySQLDriver;JvCmp;JvHMI;ACBr_PAF;ACBr_SATECFVirtual;ACBr_Sintegra;FireDACCommonODBC;ACBr_GNRE;DataSnapClient;UIRibbonPackageDR;IndyIPCommon;bindcompdbx;JvCustom;ACBr_TCP;vcl;IndyIPServer;ACBr_CTe;JvXPCtrls;ACBr_SATExtratoESCPOS;IndySystem;ACBr_NFeDanfeRL;FireDACDb2Driver;ACBr_CTeDacteRL;ACBr_Integrador;dsnapcon;ACBr_synapse;ACBre_Social;FireDACMSAccDriver;fmxFireDAC;FireDACInfxDriver;vclimg;ACBr_SPEDImportar;Jcl;ACBr_SPED;JvCore;emshosting;ACBr_Comum;ACBr_MDFe;JvCrypt;FireDACPgDriver;ACBr_LFD;FireDACASADriver;ACBr_BoletoRL;FireDACTDataDriver;ACBr_GNREGuiaRL;DbxCommonDriver;JvDlgs;JvRuntimeDesign;JvManagedThreads;ACBr_NFSeDanfseRL;DataSnapServer;xmlrtl;DataSnapNativeClient;fmxobj;vclwinx;FireDACDSDriver;rtl;frx25;DbxClientDriver;JvTimeFramework;ACBr_OpenSSL;ACBr_DFeComum;CustomIPTransport;vcldsnap;JvSystem;JvStdCtrls;ACBr_Convenio115;bindcomp;appanalytics;ACBr_Serial;IndyIPClient;frce;bindcompvcl;ACBr_BlocoX;vclribbon;dbxcds;VclSmp;JvDocking;adortl;FireDACODBCDriver;JvPascalInterpreter;ACBr_NFCeECFVirtual;JclVcl;DataSnapIndy10ServerTransport;ACBr_BoletoFR;ACBr_Boleto;ACBr_ANe;dsnapxml;DataSnapProviderClient;dbrtl;IndyProtocols;inetdbxpress;FireDACMongoDBDriver;JvControls;JvPrintPreview;ACBr_SEF2;JclContainers;ACBr_NFSe;ACBr_MTER;ACBr_MDFeDamdfeFR;DataSnapServerMidas;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <DCC_ExeOutput>C:\TechCore-ERP\Servidor\Binarios\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>C:\Projetos em Delphi\Gestão Empresarial;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <UWP_DelphiLogo44>..\..\..\Icones Diversos\100x100\icons8-coins-100.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>..\..\..\Icones Diversos\100x100\icons8-coins-100.png</UWP_DelphiLogo150>
+        <Icon_MainIcon>TechCoreRTG_Icon.ico</Icon_MainIcon>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <Icon_MainIcon>TechCoreRTG_Icon.ico</Icon_MainIcon>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
-        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <DCC_Optimize>false</DCC_Optimize>
-        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
-        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
-        <DCC_RemoteDebug>true</DCC_RemoteDebug>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <DCC_Inlining>auto</DCC_Inlining>
-        <DCC_RemoteDebug>false</DCC_RemoteDebug>
-        <Icon_MainIcon>favicon (1).ico</Icon_MainIcon>
-        <AppEnableHighDPI>true</AppEnableHighDPI>
-        <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <VerInfo_Keys>CompanyName=TechCore Soluções em Gestão;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.20;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.7;Comments=</VerInfo_Keys>
-        <VerInfo_Build>20</VerInfo_Build>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <DCC_ExeOutput>C:\TechCore-ERP\Servidor\Binarios\</DCC_ExeOutput>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <UWP_DelphiLogo44>..\..\..\Icones Diversos\100x100\icons8-coins-100.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>..\..\..\Icones Diversos\100x100\icons8-coins-100.png</UWP_DelphiLogo150>
-        <VerInfo_PreRelease>true</VerInfo_PreRelease>
-        <VerInfo_Debug>true</VerInfo_Debug>
-        <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
-        <VerInfo_Keys>CompanyName=TechCore Soluções em Gestão;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.19;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.7;Comments=</VerInfo_Keys>
-        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
-        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
-        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-        <DCC_DebugInformation>0</DCC_DebugInformation>
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_iOSDevice64)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <Icon_MainIcon>favicon (1).ico</Icon_MainIcon>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <AppEnableHighDPI>true</AppEnableHighDPI>
-        <VerInfo_PreRelease>true</VerInfo_PreRelease>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <DCC_ExeOutput>C:\TechCore-ERP\Servidor\Binarios\</DCC_ExeOutput>
+        <DCC_UnitSearchPath>G:\Projetos\GestaoComercial\02 - Retaguarda\01 - Core\App;G:\Projetos\GestaoComercial\02 - Retaguarda\02 - Modulos;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Debug>true</VerInfo_Debug>
-        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=TechCore Soluções em Gestão;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.29;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>29</VerInfo_Build>
-        <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -295,9 +286,6 @@
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeStatus.pas">
             <Form>FrEmissorNfeStatus</Form>
         </DCCReference>
-        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCancelar.pas">
-            <Form>FrEmissorNfeCancelar</Form>
-        </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCCe.pas">
             <Form>FrEmissorNfeCCe</Form>
         </DCCReference>
@@ -442,117 +430,89 @@
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\Relatórios\uRel_Filtra_Cliente_Ctas_Receber.pas">
             <Form>FrRel_Filtra_Cliente_Ctas_Receber</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\Relatórios\uRel_Vencto_Ctas_Receber.pas">
             <Form>FrRel_Vencto_Ctas_Receber</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\Relatórios\uRel_Cliente_Ctas_Receber.pas">
             <Form>FrRel_Cliente_Ctas_Receber</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\02 - Contas a Pagar\Relatórios\uRel_Vencto_Ctas_Pagar.pas">
             <Form>FrRel_Vencto_Ctas_Pagar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\02 - Contas a Pagar\Relatórios\uRel_Fornecedor_Ctas_Pagar.pas">
             <Form>FrRel_Fornecedor_Ctas_Pagar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\02 - Contas a Pagar\Relatórios\uRel_Filtro_For_Ctas_Pagar.pas">
             <Form>FrRel_Filtro_For_Ctas_Pagar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\uContasReceberRemoverFaturamento.pas">
             <Form>FrContasReceberRemoverFaturamento</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\02 - Contas a Pagar\uContasPagarExcluir.pas">
             <Form>FrContasPagarExcluir</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\uProdutosKits.pas">
             <Form>FrProdutosKit</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\04 - Relatórios sobre as Vendas\uResCaixaGrpVendedor.pas">
             <Form>FrResCaixasGrpVendedor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\04 - Relatórios sobre as Vendas\uResCaixasDetalhado.pas">
             <Form>FrResCaixasDetalhado</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\05 - Planos de Contas\uPlanoContasPadroes.pas">
             <Form>FrPlanoContasPadroes</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\01 - Etiquetas\uProdutoEtiquetas3x21.pas">
             <Form>FrProdutoEtiqueta3x21</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\01 - Etiquetas\uPrFiltroEtiquetas3x21.pas">
             <Form>FrPrdFiltroEtiquetas3x21</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\06 - Configurações\uConfigFinanceiro.pas">
             <Form>FrConfigFinanceiro</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Classes\Classe.Financeiro.pas"/>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\02 - Contas a Pagar\uContasPagarJuros.pas">
             <Form>FrContasPagarJuros</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\25 - Contas Caixas\uContasCaixas.pas">
             <Form>FrContasCaixas</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\01 - Contas a Receber\uContasReceberJuros.pas">
             <Form>FrContasReceberJuros</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\07 - Dre - Demonstrativo de Resultados\uDreSintetico01.pas">
             <Form>FrDreSintetico01</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\03 - Financeiro\07 - Dre - Demonstrativo de Resultados\uDreFiltro.pas">
             <Form>frDreFiltro</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\04 - Importar NF-e\uImportarNfe.pas">
             <Form>FrImportarNfe</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\04 - Importar NF-e\uImportarNfeAtualizar.pas">
             <Form>FrImportarUpdateEstoque</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\04 - Importar NF-e\uImportarNFeAjustes.pas">
             <Form>FrImportarNFeAjustes</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Classes\Classe.Produtos.pas"/>
         <DCCReference Include="..\Forms\Empresa Inicio\uEmpresaInicio.pas">
             <Form>FrEmpresaInicio</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\02 - Movimentação do Estoque\uMovtoEstoque.pas">
             <Form>FrMovtoEstoque</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\03 - Configurar Estoque\uConfigEstoque.pas">
             <Form>frConfigEstoque</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\02 - Movimentação do Estoque\uMovtoEstoqueAltInc.pas">
             <Form>frmovtoEstoqueAltInc</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\05 - Ordem de Serviço\uOrdemServicoConfig.pas">
             <Form>FrOrdemServicoConfig</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Classes\Classe.OrdensServicos.pas">
             <Form>uPedidosVendasLstProdutos in &apos;..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendasLstProdutos.pas&apos; {FrPedidosVendasLstProdutos</Form>
@@ -566,59 +526,99 @@
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\Classes\Classe.PedidoVendas.pas"/>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\Relatórios\uRel_Movto_Estoque_For.pas">
             <Form>FrRel_Movto_Estoque_For</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\01 - Cadastros\06 - Produtos\Relatórios\uFiltro_Movto_Estoque_For.pas">
             <Form>FrFiltro_Movto_Estoque_For</Form>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendasGerenciar.pas">
             <Form>FrPedidosVendasGerenciar</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendasPagtos.pas">
             <Form>FrPedidosVendasPagtos</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\02 - Modulos\02 - Comercial\02 - Pedidos de Vendas\uPedidosVendas.pas">
             <Form>FrPedidosVendas</Form>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMDFe.pas">
+            <Form>FrEmissorMDFe</Form>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uCabecalhoMDFe.pas">
+            <Form>FrCabecalhoMDFe</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <BuildConfiguration Include="Release">
+        <DCCReference Include="..\Classes\Classe.ParametrosMDFe.pas"/>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uMunicipios.pas">
+            <Form>FrMunicipios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uPercursoMDFe.pas">
+            <Form>FrPercurso</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uPercursoUF.pas">
+            <Form>FrPercursoUF</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uDoctos.pas">
+            <Form>FrDoctos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uChavesNFe.pas">
+            <Form>FrChavesNFe</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uVeiculoTracao.pas">
+            <Form>FrVeiculoTracao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uMotorista.pas">
+            <Form>FrMotoristas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEncerramento.pas">
+            <Form>FrEncerramento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCancelar.pas">
+            <Form>FrEmissorNfeCancelar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMdfeCancelar.pas">
+            <Form>FrEmissorMdfeCancelar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
-        <BuildConfiguration Include="Debug">
+        <BuildConfiguration Include="Release">
             <Key>Cfg_1</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
-        <Borland.ProjectType>Application</Borland.ProjectType>
+        <Borland.ProjectType/>
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
                     <Source Name="MainSource">TechCoreRTG.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Winston M. de Jesus\Componentes Delphi\ACBr\Lib\Delphi\LibD23\ACBr_Integrador.bpl">ACBr - Integrador - (http://www.projetoacbr.com.br/)</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k230.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp230.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Winston M. de Jesus\Componentes Delphi\ACBr\Lib\Delphi\LibD26\ACBr_Integrador.bpl">ACBr - Integrador - (http://www.projetoacbr.com.br/)</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
+            <Platforms>
+                <Platform value="iOSDevice64">True</Platform>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\..\..\..\..\Desktop\favicon.ico" Configuration="Debug" Class="File">
-                    <Platform Name="Win32">
-                        <RemoteName>favicon.ico</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="C:\TechCore-ERP\Servidor\Binarios\TechCoreRTG.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="..\..\..\Icones Diversos\100x100\icons8-coins-100.png" Configuration="Debug" Class="UWP_DelphiLogo44"/>
-                <DeployFile LocalName="C:\TechCore-ERP\Servidor\Binarios\TechCoreRTG.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="C:\TechCore-ERP\Servidor\Binarios\TechCoreRTG.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>TechCoreRTG.exe</RemoteName>
@@ -1323,9 +1323,6 @@
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
             </Deployment>
-            <Platforms>
-                <Platform value="Win32">True</Platform>
-            </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
