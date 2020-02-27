@@ -49,7 +49,6 @@ object FrEmissorMDFe: TFrEmissorMDFe
     GradientColorStop = 13948116
     TabOrder = 0
     VisualStyle = vsGradient
-    ExplicitTop = 98
     ToolbarControls = (
       btnNew
       RzSpacer1
@@ -280,9 +279,6 @@ object FrEmissorMDFe: TFrEmissorMDFe
     Align = alTop
     Caption = 'Filtrar MDF-e'
     TabOrder = 2
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 1095
     object Label1: TLabel
       Left = 7
       Top = 16
@@ -405,13 +401,12 @@ object FrEmissorMDFe: TFrEmissorMDFe
         Expanded = False
         FieldName = 'MD_SEF_CHAVE'
         Title.Caption = 'Chave'
-        Width = 591
+        Width = 608
         Visible = True
       end>
     Delphi2010OptionsMigrated = True
   end
   object Query: TFDQuery
-    Active = True
     AfterPost = QueryAfterPost
     BeforeDelete = QueryBeforeDelete
     OnNewRecord = QueryNewRecord

@@ -182,6 +182,7 @@ type
       procedure ConfiguraEmissorMDFe(id_emitente : integer);
       procedure CarregarEmitidos;
       procedure MontarEmitirMenifesto(EnviarMdfe: Boolean = false);
+      function  ValidarDados : boolean;
    public
       { Public declarations }
    end;
@@ -359,6 +360,10 @@ end;
 
 procedure TFrEmissorMDFe.actPreVisualizarExecute(Sender: TObject);
 begin
+   // Valida os dados antes de continuar
+   if not ValidarDados then
+      Abort;
+
    // Gera o manifesto e efetua a impressão
    if Query.FieldByName('md_status').AsInteger < 2 then
    begin
@@ -585,6 +590,10 @@ end;
 
 procedure TFrEmissorMDFe.actEnviarExecute(Sender: TObject);
 begin
+   // Valida os dados antes de continuar
+   if not ValidarDados then
+      Abort;
+
    // Gera o manifesto e envia
    MontarEmitirMenifesto(true);
 end;
@@ -915,6 +924,94 @@ begin
    Query.FieldByName('md_tip_aplicativo').AsInteger := 1;
    Query.FieldByName('md_ver_aplicativo').AsString  := '1.0';
 
+end;
+
+function TFrEmissorMDFe.ValidarDados : boolean;
+var
+   xQuery : TFDQuery;
+   ID : integer;
+begin
+   Result := false;
+
+   // checa se todos os dados foram preenchidos antes de enviar
+   xQuery            := TFDQuery.Create(self);
+   xQuery.Connection := FrModuloRet.DBConexao;
+   try
+
+      // percurso
+      xQuery.Close;
+      xQuery.SQL.Clear;
+      xQuery.SQL.Add('select 1 from C000702 where id_C000700 = :id');
+      xQuery.ParamByName('id').AsInteger := Query.FieldByName('id').AsInteger;
+      xQuery.Open();
+
+      if xQuery.IsEmpty then
+      begin
+         Application.MessageBox('Não foram informados os percursos do transporte.','TechCore-RTG',mb_IconWarning or mb_ok);
+         Abort;
+      end;
+
+      // documentos
+      xQuery.Close;
+      xQuery.SQL.Clear;
+      xQuery.SQL.Add('select id from C000705 where id_C000700  = :id');
+      xQuery.ParamByName('id').AsInteger := Query.FieldByName('id').AsInteger;
+      xQuery.Open();
+
+      if xQuery.IsEmpty then
+      begin
+         Application.MessageBox('Informe o(s) município(s) de descarga do transporte no meu "Documentos".','TechCore-RTG',mb_IconWarning or mb_ok);
+         Abort;
+      end
+      else
+         ID := xQuery.FieldByName('id').AsInteger;
+
+      // chaves das notas fiscais
+      xQuery.Close;
+      xQuery.SQL.Clear;
+      xQuery.SQL.Add('select id from C000706 where id_C000705 = :id');
+      xQuery.ParamByName('id').AsInteger := ID;
+      xQuery.Open();
+
+      if xQuery.IsEmpty then
+      begin
+         Application.MessageBox('Informe a(s) chave(s) da(s) nota(s) fiscais.','TechCore-RTG',mb_IconWarning or mb_ok);
+         Abort;
+      end;
+
+      // veículos
+      xQuery.Close;
+      xQuery.SQL.Clear;
+      xQuery.SQL.Add('select id from C000703 where id_C000700 = :id');
+      xQuery.ParamByName('id').AsInteger := Query.FieldByName('id').AsInteger;
+      xQuery.Open();
+
+      if xQuery.IsEmpty then
+      begin
+         Application.MessageBox('Informe os dados do veículo utrilizado no transporte.','TechCore-RTG',mb_IconWarning or mb_ok);
+         Abort;
+      end
+      else
+         ID :=  xQuery.FieldByName('id').AsInteger;
+
+      // motoristas
+      xQuery.Close;
+      xQuery.SQL.Clear;
+      xQuery.SQL.Add('select id from C000704 where id_C000703 = :id');
+      xQuery.ParamByName('id').AsInteger := ID;
+      xQuery.Open();
+
+      if xQuery.IsEmpty then
+      begin
+         Application.MessageBox('É necessário Informar o(s) motorista(s).','TechCore-RTG',mb_IconWarning or mb_ok);
+         Abort;
+      end;
+
+      Result := true;
+
+   finally
+      FreeAndNil(xQuery);
+   end;
 end;
 
 procedure TFrEmissorMDFe.MontarEmitirMenifesto(EnviarMdfe: Boolean);
