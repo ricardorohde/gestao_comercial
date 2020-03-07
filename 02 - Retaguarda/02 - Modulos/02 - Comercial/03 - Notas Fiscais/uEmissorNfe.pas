@@ -1682,12 +1682,12 @@ begin
          if Transmitir = True then
             GerarNumeroCodigoNfe;
 
-      Ide.cNF := tbDados.FieldByName('nfe_codigo_protecao').Asinteger; // Gerado na função -> GerarNumeroCodigoNfe
-      Ide.nNF := tbDados.FieldByName('nfe_numero').Asinteger;
-      Ide.natOp := tbDados.FieldByName('nfe_natureza_operacao').AsString;
-      Ide.modelo := tbDados.FieldByName('nfe_modelo').Asinteger;
-      Ide.serie := tbDados.FieldByName('nfe_serie').Asinteger;
-      Ide.dEmi := tbDados.FieldByName('nfe_dh_emissao').AsDateTime;
+      Ide.cNF     := tbDados.FieldByName('nfe_codigo_protecao').Asinteger; // Gerado na função -> GerarNumeroCodigoNfe
+      Ide.nNF     := tbDados.FieldByName('nfe_numero').Asinteger;
+      Ide.natOp   := tbDados.FieldByName('nfe_natureza_operacao').AsString;
+      Ide.modelo  := tbDados.FieldByName('nfe_modelo').Asinteger;
+      Ide.serie   := tbDados.FieldByName('nfe_serie').Asinteger;
+      Ide.dEmi    := tbDados.FieldByName('nfe_dh_emissao').AsDateTime;
       Ide.dSaiEnt := now;
       Ide.hSaiEnt := now;
 
@@ -1735,29 +1735,26 @@ begin
 
       With Emit.EnderEmit do
       begin
-         xLgr := FEmpresaClass.Endereco;
-         nro := FEmpresaClass.Numero.ToString();
-         xCpl := FEmpresaClass.Complemento;
+         xLgr    := FEmpresaClass.Endereco;
+         nro     := FEmpresaClass.Numero.ToString();
+         xCpl    := FEmpresaClass.Complemento;
          xBairro := FEmpresaClass.Bairro;
-         xMun := FEmpresaClass.Cidade;
-         cMun := FEmpresaClass.CodCidade;
-         UF := FEmpresaClass.UF;
-         CEP := FEmpresaClass.CEP.ToInteger();
-         xPais := FEmpresaClass.NomePais;
-         cPais := FEmpresaClass.CodigoPais;
-         fone := FEmpresaClass.FoneFixo;
+         xMun    := FEmpresaClass.Cidade;
+         cMun    := FEmpresaClass.CodCidade;
+         UF      := FEmpresaClass.UF;
+         CEP     := FEmpresaClass.CEP.ToInteger();
+         xPais   := FEmpresaClass.NomePais;
+         cPais   := FEmpresaClass.CodigoPais;
+         fone    := FEmpresaClass.FoneFixo;
       end;
 
       Emit.IE := OnlyNumber(FEmpresaClass.IEstadual);
 
       // Regime tributário do emitente
       case FEmpresaClass.Crt of
-         1:
-            Emit.Crt := crtSimplesNacional;
-         2:
-            Emit.Crt := crtSimplesExcessoReceita;
-         3:
-            Emit.Crt := crtRegimeNormal;
+         1: Emit.Crt := crtSimplesNacional;
+         2: Emit.Crt := crtSimplesExcessoReceita;
+         3: Emit.Crt := crtRegimeNormal;
       end;
 
       // Carrega os dados do cliente para emissão
@@ -1776,17 +1773,17 @@ begin
 
       With Dest.EnderDest do
       begin
-         xLgr := tbClienteCLI_ENDERECO.AsString;
-         nro := tbClienteCLI_NUMERO.AsString;
-         xCpl := tbClienteCLI_COMPLEMENTO.AsString;
+         xLgr    := tbClienteCLI_ENDERECO.AsString;
+         nro     := tbClienteCLI_NUMERO.AsString;
+         xCpl    := tbClienteCLI_COMPLEMENTO.AsString;
          xBairro := tbClienteCLI_BAIRRO.AsString;
-         cMun := tbClienteCLI_CODIGO_CIDADE.Asinteger;
-         xMun := tbClienteCLI_CIDADE.AsString;
-         UF := tbClienteCLI_UF.AsString;
-         CEP := tbClienteCLI_CEP.Asinteger;
-         xPais := tbClienteCLI_PAIS.AsString;
-         cPais := tbClienteCLI_CODIGO_PAIS.Asinteger;
-         fone := tbClienteCLI_FONE_FIXO.AsString;
+         cMun    := tbClienteCLI_CODIGO_CIDADE.Asinteger;
+         xMun    := tbClienteCLI_CIDADE.AsString;
+         UF      := tbClienteCLI_UF.AsString;
+         CEP     := tbClienteCLI_CEP.Asinteger;
+         xPais   := tbClienteCLI_PAIS.AsString;
+         cPais   := tbClienteCLI_CODIGO_PAIS.Asinteger;
+         fone    := tbClienteCLI_FONE_FIXO.AsString;
       end;
 
       // Checa se o contribuinte ou consumifor final
@@ -1884,46 +1881,46 @@ begin
          begin
             // Calculos do IPI
             BS_CalculoIPI := 0.00;
-            Valor_IPI := 0.00;
+            Valor_IPI     := 0.00;
 
             // Calculos do PIS
             BS_CalculoPIS := 0.00;
-            Valor_PIS := 0.00;
+            Valor_PIS     := 0.00;
 
             // Calculos do COFINS
             BS_CalculoCOFINS := 0.00;
-            Valor_COFINS := 0.00;
+            Valor_COFINS     := 0.00;
 
             // Calculos do ICMs
             BS_CalculoICMs := 0.00;
-            Valor_ICMs := 0.00;
+            Valor_ICMs     := 0.00;
 
             // Calculos do ICMsST
             BS_CalculoICMsST := 0.00;
-            Valor_ICMsST := 0.00;
-            RB_Aliq_MVa := 0.00;
+            Valor_ICMsST     := 0.00;
+            RB_Aliq_MVa      := 0.00;
 
-            Prod.nItem := tbItens.RecNo;
-            Prod.cProd := tbItensPRD_CODIGO.AsString;
-            Prod.cEAN := tbItensPRD_CODIGO_BARRAS.AsString;
-            Prod.xProd := tbItensPRD_DESCRICAO.AsString;
-            Prod.NCM := tbItensPRD_NCM.AsString;
-            Prod.CEST := tbItensPRD_CEST.AsString;
-            Prod.CFOP := tbItensPRD_CFOP.AsString;
-            Prod.uCom := tbItensPRD_UNIDADE.AsString;
-            Prod.qCom := tbItensPRD_QTDE.AsFloat;
-            Prod.vUnCom := tbItensPRD_VLR_UNITARIO.AsFloat;
-            Prod.vProd := tbItensPRD_VLR_SUBTOTAL.AsFloat;
+            Prod.nItem    := tbItens.RecNo;
+            Prod.cProd    := tbItensPRD_CODIGO.AsString;
+            Prod.cEAN     := tbItensPRD_CODIGO_BARRAS.AsString;
+            Prod.xProd    := tbItensPRD_DESCRICAO.AsString;
+            Prod.NCM      := tbItensPRD_NCM.AsString;
+            Prod.CEST     := tbItensPRD_CEST.AsString;
+            Prod.CFOP     := tbItensPRD_CFOP.AsString;
+            Prod.uCom     := tbItensPRD_UNIDADE.AsString;
+            Prod.qCom     := tbItensPRD_QTDE.AsFloat;
+            Prod.vUnCom   := tbItensPRD_VLR_UNITARIO.AsFloat;
+            Prod.vProd    := tbItensPRD_VLR_SUBTOTAL.AsFloat;
             Prod.cEANTrib := tbItensPRD_CODIGO_BARRAS.AsString;
-            Prod.qTrib := tbItensPRD_QTDE.AsFloat;
-            Prod.uTrib := tbItensPRD_UNIDADE.AsString;
-            Prod.vUnTrib := tbItensPRD_VLR_UNITARIO.AsFloat;
-            Prod.vFrete := tbItensPRD_VLR_FRETE.AsFloat;
-            Prod.vSeg := tbItensPRD_VLR_SEGURO.AsFloat;
-            Prod.vOutro := tbItensPRD_VLR_OUTROS.AsFloat;
-            Prod.vDesc := tbItensPRD_VLR_DESCONTO.AsFloat;
-            Prod.IndTot := TpcnIndicadorTotal(tbItensPRD_IND_TOT.Asinteger);
-            infAdProd := tbItensPRD_INFORMACOES.AsString;
+            Prod.qTrib    := tbItensPRD_QTDE.AsFloat;
+            Prod.uTrib    := tbItensPRD_UNIDADE.AsString;
+            Prod.vUnTrib  := tbItensPRD_VLR_UNITARIO.AsFloat;
+            Prod.vFrete   := tbItensPRD_VLR_FRETE.AsFloat;
+            Prod.vSeg     := tbItensPRD_VLR_SEGURO.AsFloat;
+            Prod.vOutro   := tbItensPRD_VLR_OUTROS.AsFloat;
+            Prod.vDesc    := tbItensPRD_VLR_DESCONTO.AsFloat;
+            Prod.IndTot   := TpcnIndicadorTotal(tbItensPRD_IND_TOT.Asinteger);
+            infAdProd     := tbItensPRD_INFORMACOES.AsString;
 
             // ------------------------------------------------------------------------------------------ //
             // Autor:      Winston Moreira                                                                //
@@ -1937,24 +1934,24 @@ begin
                // Se informado a aliquota, efetua o calculo do COFINS
                if (tbItensPRD_COFINS_ALIQ.AsFloat > 0.00) and (FEmpresaClass.Crt = 3) then
                begin
-                  BS_CalculoCOFINS := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
-                  Valor_COFINS := (BS_CalculoCOFINS * (tbItensPRD_COFINS_ALIQ.AsFloat / 100));
+                  BS_CalculoCOFINS   := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
+                  Valor_COFINS       := (BS_CalculoCOFINS * (tbItensPRD_COFINS_ALIQ.AsFloat / 100));
                   vALOR_COFINS_Total := (vALOR_COFINS_Total + Valor_COFINS);
                end;
 
                // Se informado a aliquota, efetua o calculo do IPI
                if (tbItensPRD_IPI_ALIQ.AsFloat > 0.00) and (FEmpresaClass.Crt = 3) then
                begin
-                  BS_CalculoIPI := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
-                  Valor_IPI := (BS_CalculoIPI * (tbItensPRD_IPI_ALIQ.AsFloat / 100));
+                  BS_CalculoIPI   := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
+                  Valor_IPI       := (BS_CalculoIPI * (tbItensPRD_IPI_ALIQ.AsFloat / 100));
                   Valor_IPI_Total := (Valor_IPI_Total + Valor_IPI);
                end;
 
                // Se informado a aliquota, efetua o calculo do PIS
                if (tbItensPRD_PIS_ALIQ.AsFloat > 0.00) and (FEmpresaClass.Crt = 3) then
                begin
-                  BS_CalculoPIS := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
-                  Valor_PIS := (BS_CalculoPIS * (tbItensPRD_PIS_ALIQ.AsFloat / 100));
+                  BS_CalculoPIS   := (Prod.vProd + Prod.vFrete + Prod.vSeg + Prod.vOutro);
+                  Valor_PIS       := (BS_CalculoPIS * (tbItensPRD_PIS_ALIQ.AsFloat / 100));
                   Valor_PIS_TOtal := (Valor_PIS_TOtal + Valor_PIS);
                end;
 
@@ -1972,7 +1969,7 @@ begin
 
                   BS_CalculoICMs_Total := (BS_CalculoICMs_Total + BS_CalculoICMs);
 
-                  Valor_ICMs := (BS_CalculoICMs * (tbItensPRD_ICMS_ALIQ.AsFloat / 100));
+                  Valor_ICMs       := (BS_CalculoICMs * (tbItensPRD_ICMS_ALIQ.AsFloat / 100));
                   Valor_Icms_Total := (Valor_Icms_Total + Valor_ICMs);
                end;
 
@@ -2013,24 +2010,15 @@ begin
 
                         // 3.1 - Determina o tipo de CSOSN utilizando o cast e string para inteiro
                         case tbItensPRD_CST.Asinteger of
-                           101:
-                              ICMS.CSOSN := csosn101;
-                           102:
-                              ICMS.CSOSN := csosn102;
-                           103:
-                              ICMS.CSOSN := csosn103;
-                           201:
-                              ICMS.CSOSN := csosn201;
-                           202:
-                              ICMS.CSOSN := csosn202;
-                           300:
-                              ICMS.CSOSN := csosn300;
-                           400:
-                              ICMS.CSOSN := csosn400;
-                           500:
-                              ICMS.CSOSN := csosn500;
-                           900:
-                              ICMS.CSOSN := csosn900;
+                           101: ICMS.CSOSN := csosn101;
+                           102: ICMS.CSOSN := csosn102;
+                           103: ICMS.CSOSN := csosn103;
+                           201: ICMS.CSOSN := csosn201;
+                           202: ICMS.CSOSN := csosn202;
+                           300: ICMS.CSOSN := csosn300;
+                           400: ICMS.CSOSN := csosn400;
+                           500: ICMS.CSOSN := csosn500;
+                           900: ICMS.CSOSN := csosn900;
                         end;
 
                         // Obs.: para CSOSN: 102, 103, 300, 400
@@ -2106,22 +2094,22 @@ begin
                         end;
 
                         // 3.3 - Gera as TAGs do IPI
-                        IPI.CST := ipi99;
+                        IPI.CST  := ipi99;
                         IPI.pIPI := 0.00;
-                        IPI.vBC := 0.00;
+                        IPI.vBC  := 0.00;
                         IPI.vIPI := 0.00;
                         IPI.cEnq := tbItensPRD_IPI_CODIGO.AsString;
 
                         // 3.4 - Gera as TAGs do PIS
-                        PIS.CST := pis99;
+                        PIS.CST  := pis99;
                         PIS.pPIS := tbItensPRD_PIS_ALIQ.AsFloat;
-                        PIS.vBC := 0.00;
+                        PIS.vBC  := 0.00;
                         PIS.vPIS := 0.00;
 
                         // 3.5 - Gera as TAGs do COFINS
-                        COFINS.CST := cof99;
+                        COFINS.CST     := cof99;
                         COFINS.pCOFINS := tbItensPRD_COFINS_ALIQ.AsFloat;
-                        COFINS.vBC := 0.00;
+                        COFINS.vBC     := 0.00;
                         COFINS.vCOFINS := 0.00;
 
                      end;
@@ -2131,71 +2119,44 @@ begin
 
                         // 4.1 - Determina o tipo de CST
                         case tbItensPRD_CST.Asinteger of
-                           0:
-                              ICMS.CST := cst00;
-                           10:
-                              ICMS.CST := cst10;
-                           20:
-                              ICMS.CST := cst20;
-                           30:
-                              ICMS.CST := cst30;
-                           40:
-                              ICMS.CST := cst40;
-                           41:
-                              ICMS.CST := cst41;
-                           50:
-                              ICMS.CST := cst50;
-                           51:
-                              ICMS.CST := cst51;
-                           60:
-                              ICMS.CST := cst60;
-                           70:
-                              ICMS.CST := cst70;
-                           80:
-                              ICMS.CST := cst80;
-                           81:
-                              ICMS.CST := cst81;
-                           90:
-                              ICMS.CST := cst90;
+                           0:  ICMS.CST := cst00;
+                           10: ICMS.CST := cst10;
+                           20: ICMS.CST := cst20;
+                           30: ICMS.CST := cst30;
+                           40: ICMS.CST := cst40;
+                           41: ICMS.CST := cst41;
+                           50: ICMS.CST := cst50;
+                           51: ICMS.CST := cst51;
+                           60: ICMS.CST := cst60;
+                           70: ICMS.CST := cst70;
+                           80: ICMS.CST := cst80;
+                           81: ICMS.CST := cst81;
+                           90: ICMS.CST := cst90;
                         end;
 
                         // Dados do ICMS
-                        ICMS.modBC := dbiValorOperacao;
-                        ICMS.pICMS := tbItensPRD_ICMS_ALIQ.AsFloat;
+                        ICMS.modBC  := dbiValorOperacao;
+                        ICMS.pICMS  := tbItensPRD_ICMS_ALIQ.AsFloat;
                         ICMS.pRedBC := tbItensPRD_ICMS_RBCALC.AsFloat;
-                        ICMS.vBC := BS_CalculoICMs;
-                        ICMS.vICMS := Valor_ICMs;
+                        ICMS.vBC    := BS_CalculoICMs;
+                        ICMS.vICMS  := Valor_ICMs;
 
                         // Dados do IPI
                         case tbItensPRD_IPI_CST.Asinteger of
-                           0:
-                              IPI.CST := ipi00;
-                           1:
-                              IPI.CST := ipi01;
-                           2:
-                              IPI.CST := ipi02;
-                           3:
-                              IPI.CST := ipi03;
-                           4:
-                              IPI.CST := ipi04;
-                           5:
-                              IPI.CST := ipi05;
-                           49:
-                              IPI.CST := ipi49;
-                           50:
-                              IPI.CST := ipi50;
-                           51:
-                              IPI.CST := ipi51;
-                           52:
-                              IPI.CST := ipi52;
-                           53:
-                              IPI.CST := ipi53;
-                           54:
-                              IPI.CST := ipi54;
-                           55:
-                              IPI.CST := ipi55;
-                           99:
-                              IPI.CST := ipi99;
+                           0:  IPI.CST := ipi00;
+                           1:  IPI.CST := ipi01;
+                           2:  IPI.CST := ipi02;
+                           3:  IPI.CST := ipi03;
+                           4:  IPI.CST := ipi04;
+                           5:  IPI.CST := ipi05;
+                           49: IPI.CST := ipi49;
+                           50: IPI.CST := ipi50;
+                           51: IPI.CST := ipi51;
+                           52: IPI.CST := ipi52;
+                           53: IPI.CST := ipi53;
+                           54: IPI.CST := ipi54;
+                           55: IPI.CST := ipi55;
+                           99: IPI.CST := ipi99;
                         end;
 
                         IPI.vBC := BS_CalculoIPI;
@@ -2543,14 +2504,15 @@ begin
       // ------------------------------------------------------------------------------------------ //
       Transp.modFrete := TpcnModalidadeFrete(tbDadosNFE_TIPO_FRETE.Asinteger);
 
-      if Transp.modFrete <> mfSemFrete then
-      begin
 
-         tbPesq := TFDQuery.Create(self);
-         tbPesq.Connection := FrModuloRet.DBConexao;
-         try
+      tbPesq            := TFDQuery.Create(self);
+      tbPesq.Connection := FrModuloRet.DBConexao;
+      try
 
-            // Dados da transportadora
+         // Dados da transportadora
+         if Transp.modFrete <> mfSemFrete then
+         begin
+
             tbPesq.SQL.Add('SELECT TRA_RAZAO_SOCIAL, TRA_CNPJ, TRA_UF, TRA_IESTADUAL, TRA_ENDERECO, TRA_CIDADE, TRA_TIPO_PESSOA FROM C000310 WHERE ID = :ID_TRANSPORTADORA');
             tbPesq.ParamByName('ID_TRANSPORTADORA').Asinteger := tbDadosID_TRANSPORTADORA.Asinteger;
             tbPesq.Open();
@@ -2573,21 +2535,21 @@ begin
             Transp.veicTransp.UF := tbDadosNFE_VEICULO_UF.AsString;
             Transp.veicTransp.RNTC := tbDadosNFE_VEICULO_RNTC.AsString;
 
-            // Dados dos volumes
-            with Transp.Vol.Add do
-            begin
-               qVol := tbDados.FieldByName('nfe_volume_qtde').Asinteger;
-               esp := tbDados.FieldByName('nfe_volume_especie').AsString;
-               marca := tbDados.FieldByName('nfe_volume_marca').AsString;
-               nVol := tbDados.FieldByName('nfe_volume_numero').AsString;
-               pesoL := tbDados.FieldByName('nfe_volume_peso_l').AsFloat;
-               pesoB := tbDados.FieldByName('nfe_volume_peso_b').AsFloat;
-            end;
-
-         finally
-            FreeAndNil(tbPesq);
          end;
 
+         // Dados dos volumes
+         with Transp.Vol.Add do
+         begin
+            qVol  := tbDados.FieldByName('nfe_volume_qtde').Asinteger;
+            esp   := tbDados.FieldByName('nfe_volume_especie').AsString;
+            marca := tbDados.FieldByName('nfe_volume_marca').AsString;
+            nVol  := tbDados.FieldByName('nfe_volume_numero').AsString;
+            pesoL := tbDados.FieldByName('nfe_volume_peso_l').AsFloat;
+            pesoB := tbDados.FieldByName('nfe_volume_peso_b').AsFloat;
+         end;
+
+      finally
+         FreeAndNil(tbPesq);
       end;
 
       // ------------------------------------------------------------------------------------------ //
@@ -2610,15 +2572,24 @@ begin
          sAvisoICMsTemp := '';
 
          // 1º Monta a parte do texto que exibe o valor
-         sAvisoICMs := Copy(FEmpresaClass.MsgCreditoICMS, 1, Pos(';', FEmpresaClass.MsgCreditoICMS));
-         sAvisoICMs := StringReplace(sAvisoICMs, ';', ' ', [rfReplaceAll]);
-         sAvisoICMs := sAvisoICMs + FormatFloat(',0.00', (Total.ICMSTot.vNF * FEmpresaClass.IcmsAliquota) / 100);
+         sAvisoICMs     := Copy(FEmpresaClass.MsgCreditoICMS, 1, Pos(';', FEmpresaClass.MsgCreditoICMS));
+         sAvisoICMs     := StringReplace(sAvisoICMs, ';', ' ', [rfReplaceAll]);
+
+         // Se houverem valores exibe o mesmo
+         var vResult := (Total.ICMSTot.vNF * FEmpresaClass.IcmsAliquota) / 100;
+
+         if vResult > 0.00 then
+            sAvisoICMs  := sAvisoICMs + FormatFloatBr((Total.ICMSTot.vNF * FEmpresaClass.IcmsAliquota) / 100);
+
          sAvisoICMsTemp := sAvisoICMs + Copy(FEmpresaClass.MsgCreditoICMS, Pos(';', FEmpresaClass.MsgCreditoICMS) + 1);
 
          // Monta a parte do texto que exibe a aliquota
          sAvisoICMs := Copy(sAvisoICMsTemp, 1, Pos(';', sAvisoICMsTemp));
          sAvisoICMs := StringReplace(sAvisoICMs, ';', ' ', [rfReplaceAll]);
-         sAvisoICMs := sAvisoICMs + FormatFloat(',0.00', FEmpresaClass.IcmsAliquota);
+
+         if FEmpresaClass.IcmsAliquota > 0.00 then
+            sAvisoICMs := sAvisoICMs + FormatFloatBr(FEmpresaClass.IcmsAliquota);
+
          sAvisoICMs := sAvisoICMs + Copy(sAvisoICMsTemp, Pos(';', sAvisoICMsTemp) + 2);
 
       end;
@@ -3099,22 +3070,16 @@ procedure TFrEmissorNfe.FormCreate(Sender: TObject);
 begin
    // Ajustar casas decimais
    case FEmpresaClass.Decimal_Venda of
-      2:
-         tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.00';
-      3:
-         tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.000';
-      4:
-         tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.0000';
+      2 : tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.00';
+      3 : tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.000';
+      4 : tbItensPRD_VLR_UNITARIO.DisplayFormat := ',0.0000';
    end;
 
    // Ajustar casas decimais
    case FEmpresaClass.Decimal_Qtde of
-      2:
-         tbItensPRD_QTDE.DisplayFormat := ',0.00';
-      3:
-         tbItensPRD_QTDE.DisplayFormat := ',0.000';
-      4:
-         tbItensPRD_QTDE.DisplayFormat := ',0.0000';
+      2 : tbItensPRD_QTDE.DisplayFormat := ',0.00';
+      3 : tbItensPRD_QTDE.DisplayFormat := ',0.000';
+      4 : tbItensPRD_QTDE.DisplayFormat := ',0.0000';
    end;
 
    // Armazena o caption padrão do menu Gerar Carta de Correção

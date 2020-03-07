@@ -30,10 +30,10 @@ object FrMotoristas: TFrMotoristas
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 146
+      Width = 166
       Height = 30
       DataSource = dsQuery
-      VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel]
+      VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
       Align = alLeft
       TabOrder = 3
     end
@@ -44,7 +44,7 @@ object FrMotoristas: TFrMotoristas
     Top = 3
     Width = 398
     Height = 202
-    ActivePage = tabVeiculos
+    ActivePage = tabDetalhes
     Align = alClient
     TabOrder = 1
     OnChanging = pgControlChanging
@@ -103,6 +103,7 @@ object FrMotoristas: TFrMotoristas
     object tabDetalhes: TTabSheet
       Caption = 'Detalhes'
       ImageIndex = 1
+      OnShow = tabDetalhesShow
       object GroupBox4: TGroupBox
         AlignWithMargins = True
         Left = 3

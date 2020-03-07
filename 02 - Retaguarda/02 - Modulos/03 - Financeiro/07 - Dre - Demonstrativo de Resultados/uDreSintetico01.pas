@@ -45,7 +45,7 @@ type
     QueryF_DESCRICAO: TStringField;
     DataSource2: TDataSource;
     QueryF_GRUPO: TStringField;
-    QueryF_VALOR: TFMTBCDField;
+    QueryF_VALOR: TSingleField;
     procedure RLDBText4BeforePrint(Sender: TObject; var AText: string;
       var PrintIt: Boolean);
     procedure RLDBText5BeforePrint(Sender: TObject; var AText: string;

@@ -57,7 +57,6 @@ type
     QueryPRD_UNIDADE: TStringField;
     QueryPRD_GRUPO: TStringField;
     RLDBResult1: TRLDBResult;
-    QueryPRD_VLR_TOTAL: TFMTBCDField;
     QueryQTDE_SAIDA: TBCDField;
     RLLabel6: TRLLabel;
     RLDBText8: TRLDBText;
@@ -73,6 +72,7 @@ type
     RLDBText12: TRLDBText;
     RLLabel17: TRLLabel;
     RLDBText13: TRLDBText;
+    QueryPRD_VLR_TOTAL: TFloatField;
     procedure RLLabel16BeforePrint(Sender: TObject; var AText: string; var PrintIt: Boolean);
     procedure PrintBeforePrint(Sender: TObject; var PrintIt: Boolean);
     procedure lb_empresaBeforePrint(Sender: TObject; var AText: string; var PrintIt: Boolean);

@@ -44,19 +44,31 @@ object FrDoctos: TFrDoctos
       Left = 5
       Top = 32
       Width = 44
-      Height = 21
+      Height = 23
       DataSource = FrEmissorMDFe.dsQuery
       DataField = 'MD_UF_FINAL'
       Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
     end
     object txtMunicipio: TRzDBButtonEdit
       Left = 55
       Top = 32
       Width = 325
-      Height = 21
+      Height = 23
       DataSource = dsQuery
       DataField = 'MD_XMUNDESCARGA'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
       AltBtnWidth = 15
       ButtonWidth = 15
@@ -70,7 +82,13 @@ object FrDoctos: TFrDoctos
       Height = 120
       Align = alBottom
       DataSource = dsQuery
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+      ParentFont = False
       TabOrder = 2
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -82,7 +100,7 @@ object FrDoctos: TFrDoctos
       SelectColumnsDialogStrings.OK = '&OK'
       SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
       EditControls = <>
-      RowsHeight = 17
+      RowsHeight = 19
       TitleRowHeight = 17
       Columns = <
         item
@@ -94,7 +112,7 @@ object FrDoctos: TFrDoctos
           Title.Font.Height = -11
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 50
+          Width = 65
           Visible = True
         end
         item
@@ -106,7 +124,7 @@ object FrDoctos: TFrDoctos
           Title.Font.Height = -11
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 307
+          Width = 292
           Visible = True
         end>
       Delphi2010OptionsMigrated = True
@@ -124,10 +142,10 @@ object FrDoctos: TFrDoctos
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 150
+      Width = 182
       Height = 29
       DataSource = dsQuery
-      VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel]
+      VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
       Align = alLeft
       ConfirmDelete = False
       TabOrder = 0
@@ -168,6 +186,7 @@ object FrDoctos: TFrDoctos
     Top = 110
   end
   object Query: TFDQuery
+    Active = True
     AfterInsert = QueryAfterInsert
     BeforeDelete = QueryBeforeDelete
     IndexFieldNames = 'ID_C000700'
@@ -186,7 +205,7 @@ object FrDoctos: TFrDoctos
         Name = 'ID'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 24
       end>
     object QueryID: TIntegerField
       AutoGenerateValue = arAutoInc

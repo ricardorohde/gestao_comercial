@@ -539,7 +539,7 @@ object FrRel_Cliente_Ctas_Receber: TFrRel_Cliente_Ctas_Receber
       end
       object RLBand8: TRLBand
         Left = 0
-        Top = 181
+        Top = 134
         Width = 1077
         Height = 18
         BandType = btSummary
@@ -581,7 +581,8 @@ object FrRel_Cliente_Ctas_Receber: TFrRel_Cliente_Ctas_Receber
         Left = 0
         Top = 65
         Width = 1077
-        Height = 116
+        Height = 69
+        AllowedBands = [btHeader, btTitle, btColumnHeader, btDetail, btSummary]
         Borders.Sides = sdCustom
         Borders.DrawLeft = False
         Borders.DrawTop = False
@@ -840,11 +841,12 @@ object FrRel_Cliente_Ctas_Receber: TFrRel_Cliente_Ctas_Receber
             Text = ''
           end
           object RLDBText17: TRLDBText
-            Left = 916
+            Left = 929
             Top = 1
-            Width = 106
+            Width = 93
             Height = 14
             Alignment = taRightJustify
+            AutoSize = False
             DataField = 'REC_VLR_RECEBIDO'
             DataSource = dsPagtos
             Font.Charset = DEFAULT_CHARSET
@@ -1065,7 +1067,20 @@ object FrRel_Cliente_Ctas_Receber: TFrRel_Cliente_Ctas_Receber
     FetchOptions.Cache = [fiBlobs, fiMeta]
     SQL.Strings = (
       'SELECT'
-      '   *'
+      '   ID,'
+      '   ID_C000110,'
+      '   ID_C000111,'
+      '   ID_FORMA_PAGTO,'
+      '   REC_DATA_RECEBTO,'
+      '   REC_ANOTACOES,'
+      '   REC_FORMA_PAGTO,'
+      '   CAST(REC_SALDO AS FLOAT) AS REC_SALDO,'
+      '   CAST(REC_VLR_JUROS AS FLOAT) AS REC_VLR_JUROS,'
+      '   CAST(REC_VLR_MULTA AS FLOAT) AS REC_VLR_MULTA,'
+      '   CAST(REC_VLR_ACRESCIMOS AS FLOAT) AS REC_VLR_ACRESCIMOS,'
+      '   CAST(REC_VLR_DESCONTOS AS FLOAT) AS REC_VLR_DESCONTOS,'
+      '   CAST(REC_VLR_CARTORIOS AS FLOAT) AS REC_VLR_CARTORIOS,'
+      '   CAST(REC_VLR_RECEBIDO AS FLOAT) AS REC_VLR_RECEBIDO'
       'FROM'
       '   C000112'
       'WHERE'
@@ -1114,54 +1129,65 @@ object FrRel_Cliente_Ctas_Receber: TFrRel_Cliente_Ctas_Receber
       Origin = 'REC_FORMA_PAGTO'
       Size = 60
     end
-    object QueryPagtosREC_SALDO: TFMTBCDField
+    object QueryPagtosREC_SALDO: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_SALDO'
       Origin = 'REC_SALDO'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_JUROS: TFMTBCDField
+    object QueryPagtosREC_VLR_JUROS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_JUROS'
       Origin = 'REC_VLR_JUROS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_MULTA: TFMTBCDField
+    object QueryPagtosREC_VLR_MULTA: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_MULTA'
       Origin = 'REC_VLR_MULTA'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_ACRESCIMOS: TFMTBCDField
+    object QueryPagtosREC_VLR_ACRESCIMOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_ACRESCIMOS'
       Origin = 'REC_VLR_ACRESCIMOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_DESCONTOS: TFMTBCDField
+    object QueryPagtosREC_VLR_DESCONTOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_DESCONTOS'
       Origin = 'REC_VLR_DESCONTOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_CARTORIOS: TFMTBCDField
+    object QueryPagtosREC_VLR_CARTORIOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_CARTORIOS'
       Origin = 'REC_VLR_CARTORIOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_RECEBIDO: TFMTBCDField
+    object QueryPagtosREC_VLR_RECEBIDO: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_RECEBIDO'
       Origin = 'REC_VLR_RECEBIDO'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
+  end
+  object RLExpressionParser1: TRLExpressionParser
+    Left = 561
+    Top = 301
   end
 end

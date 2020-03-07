@@ -401,12 +401,13 @@ object FrEmissorMDFe: TFrEmissorMDFe
         Expanded = False
         FieldName = 'MD_SEF_CHAVE'
         Title.Caption = 'Chave'
-        Width = 608
+        Width = 591
         Visible = True
       end>
     Delphi2010OptionsMigrated = True
   end
   object Query: TFDQuery
+    Active = True
     AfterPost = QueryAfterPost
     BeforeDelete = QueryBeforeDelete
     OnNewRecord = QueryNewRecord

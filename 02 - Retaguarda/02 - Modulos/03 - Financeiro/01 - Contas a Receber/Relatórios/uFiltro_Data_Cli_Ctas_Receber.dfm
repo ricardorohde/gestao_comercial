@@ -281,10 +281,10 @@ object FrFiltro_Data_Cli_Ctas_Receber: TFrFiltro_Data_Cli_Ctas_Receber
       '   CAST(T2.REC_DATA_REGISTRO AS DATE) AS REC_DATA_REGISTRO,'
       '   T1.REC_VENCIMENTO,'
       '   T1.REC_DOCUMENTO,'
-      '   T1.REC_VALOR,'
-      '   T1.REC_VLR_ATUALIZADO,'
-      '   T1.REC_VLR_RECEBIDO,'
-      '   T1.REC_VLR_SALDO,'
+      '   CAST(T1.REC_VALOR AS FLOAT) AS REC_VALOR,'
+      '   CAST(T1.REC_VLR_ATUALIZADO AS FLOAT) AS REC_VLR_ATUALIZADO,'
+      '   CAST(T1.REC_VLR_RECEBIDO AS FLOAT) AS REC_VLR_RECEBIDO,'
+      '   CAST(T1.REC_VLR_SALDO AS FLOAT) AS REC_VLR_SALDO,'
       '   T1.REC_ANOTACOES,'
       
         '   CASE T1.REC_STATUS -- EXIBE A QUANTIDADE DE DIAS A VENCER OU ' +
@@ -390,33 +390,25 @@ object FrFiltro_Data_Cli_Ctas_Receber: TFrFiltro_Data_Cli_Ctas_Receber
       FieldName = 'REC_DATA_REGISTRO'
       Origin = 'REC_DATA_REGISTRO'
     end
-    object tbDadosREC_VALOR: TFMTBCDField
+    object tbDadosREC_VALOR: TSingleField
       FieldName = 'REC_VALOR'
       Origin = 'REC_VALOR'
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object tbDadosREC_VLR_ATUALIZADO: TFMTBCDField
+    object tbDadosREC_VLR_ATUALIZADO: TSingleField
       FieldName = 'REC_VLR_ATUALIZADO'
       Origin = 'REC_VLR_ATUALIZADO'
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object tbDadosREC_VLR_RECEBIDO: TFMTBCDField
+    object tbDadosREC_VLR_RECEBIDO: TSingleField
       FieldName = 'REC_VLR_RECEBIDO'
       Origin = 'REC_VLR_RECEBIDO'
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object tbDadosREC_VLR_SALDO: TFMTBCDField
+    object tbDadosREC_VLR_SALDO: TSingleField
       FieldName = 'REC_VLR_SALDO'
       Origin = 'REC_VLR_SALDO'
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
   end
   object Pop00: TPopupMenu

@@ -3,7 +3,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Cabe'#231'alho.'
-  ClientHeight = 421
+  ClientHeight = 426
   ClientWidth = 519
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,49 +17,49 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   TextHeight = 13
   object Label17: TLabel
     Left = 6
-    Top = 2
+    Top = 6
     Width = 51
     Height = 13
     Caption = 'Tipo Modal'
   end
   object Label14: TLabel
     Left = 348
-    Top = 2
+    Top = 6
     Width = 86
     Height = 13
     Caption = 'Un. Medida Carga'
   end
   object Label8: TLabel
     Left = 162
-    Top = 82
+    Top = 86
     Width = 103
     Height = 13
     Caption = 'Data In'#237'cio da Viagem'
   end
   object Label4: TLabel
     Left = 6
-    Top = 82
+    Top = 86
     Width = 90
     Height = 13
     Caption = 'Data Hora Emiss'#227'o'
   end
   object Label9: TLabel
     Left = 6
-    Top = 42
+    Top = 46
     Width = 111
     Height = 13
     Caption = 'Local de Carregamento'
   end
   object Label11: TLabel
     Left = 442
-    Top = 42
+    Top = 46
     Width = 71
     Height = 13
     Caption = 'UF Descarrega'
   end
   object Label12: TLabel
     Left = 6
-    Top = 122
+    Top = 126
     Width = 172
     Height = 13
     Caption = 'Informa'#231#245'es Complementares'
@@ -72,7 +72,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object Label15: TLabel
     Left = 6
-    Top = 270
+    Top = 274
     Width = 103
     Height = 13
     Caption = 'Informa'#231#245'es Fisco'
@@ -85,28 +85,28 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object Label10: TLabel
     Left = 177
-    Top = 2
+    Top = 6
     Width = 92
     Height = 13
     Caption = 'Tipo Transportador'
   end
   object Label16: TLabel
     Left = 416
-    Top = 82
+    Top = 86
     Width = 52
     Height = 13
     Caption = 'Peso Bruto'
   end
   object Label13: TLabel
     Left = 318
-    Top = 82
+    Top = 86
     Width = 83
     Height = 13
     Caption = 'Valor Total Carga'
   end
   object cbTipoModal: TRzDBComboBox
     Left = 6
-    Top = 17
+    Top = 21
     Width = 165
     Height = 21
     DataField = 'MD_TIP_MODAL'
@@ -126,7 +126,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object cbUnidade: TRzDBComboBox
     Left = 348
-    Top = 17
+    Top = 21
     Width = 165
     Height = 21
     DataField = 'MD_COD_UNIDADE'
@@ -148,7 +148,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object txtDhSaida: TRzDBEdit
     Left = 162
-    Top = 97
+    Top = 101
     Width = 150
     Height = 21
     DataSource = dsQuery
@@ -158,7 +158,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object txtDhEmissao: TRzDBEdit
     Left = 6
-    Top = 97
+    Top = 101
     Width = 150
     Height = 21
     DataSource = dsQuery
@@ -168,7 +168,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object txtUfCarregamento: TRzDBButtonEdit
     Left = 6
-    Top = 57
+    Top = 61
     Width = 53
     Height = 21
     DataSource = dsQuery
@@ -181,7 +181,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object txtMunicipio: TRzDBEdit
     Left = 65
-    Top = 57
+    Top = 61
     Width = 371
     Height = 21
     DataSource = dsQuery
@@ -191,7 +191,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object cbUfFinal: TRzDBComboBox
     Left = 442
-    Top = 57
+    Top = 61
     Width = 71
     Height = 21
     DataField = 'MD_UF_FINAL'
@@ -257,7 +257,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object RzDBMemo1: TRzDBMemo
     Left = 6
-    Top = 137
+    Top = 141
     Width = 507
     Height = 129
     DataField = 'MD_INF_COMPLEMENTARES'
@@ -266,7 +266,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object RzDBMemo2: TRzDBMemo
     Left = 6
-    Top = 284
+    Top = 288
     Width = 507
     Height = 95
     DataField = 'MD_INF_FISCO'
@@ -275,7 +275,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object cbTipoTransportadorar: TRzDBComboBox
     Left = 177
-    Top = 17
+    Top = 21
     Width = 165
     Height = 21
     DataField = 'MD_TIP_TRANSPORTADOR'
@@ -293,7 +293,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object cbPeso: TJvDBCalcEdit
     Left = 416
-    Top = 97
+    Top = 101
     Width = 97
     Height = 21
     DecimalPlaceRound = True
@@ -311,7 +311,7 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object txtValor: TJvDBCalcEdit
     Left = 318
-    Top = 97
+    Top = 101
     Width = 95
     Height = 21
     DecimalPlaceRound = True
@@ -329,20 +329,19 @@ object FrCabecalhoMDFe: TFrCabecalhoMDFe
   end
   object RzDialogButtons1: TRzDialogButtons
     Left = 0
-    Top = 385
+    Top = 390
     Width = 519
     CaptionCancel = 'Cancelar'
     HotTrack = True
     OKDefault = False
     OnClickOk = RzDialogButtons1ClickOk
     TabOrder = 12
-    ExplicitTop = 435
-    ExplicitWidth = 435
+    ExplicitTop = 385
   end
   object dsQuery: TDataSource
     AutoEdit = False
     DataSet = FrEmissorMDFe.Query
     Left = 132
-    Top = 232
+    Top = 236
   end
 end

@@ -587,6 +587,14 @@
             <Form>FrEmissorMdfeCancelar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uChaveNFe.pas">
+            <Form>FrChaveNFe</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uListagemNFe.pas">
+            <Form>FrListagemNFe</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

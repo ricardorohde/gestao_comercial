@@ -723,7 +723,7 @@ object FrRel_Movto_Estoque: TFrRel_Movto_Estoque
       
         '   SUM(TB0.PRD_QTDE)        AS PRD_QTDE, -- Quantidade de saida ' +
         'no per'#237'odo'
-      '   SUM(CAST(TB0.PRD_VLR_TOT AS NUMERIC(15,2))) AS PRD_VLR_TOTAL,'
+      '   SUM(CAST(TB0.PRD_VLR_TOT AS FLOAT)) AS PRD_VLR_TOTAL,'
       ''
       '   /* Dados adicionais do produto */'
       '   LPAD(T1.PRD_CODIGO,6,0) AS PRD_CODIGO,'
@@ -882,12 +882,10 @@ object FrRel_Movto_Estoque: TFrRel_Movto_Estoque
       FieldName = 'PRD_ID'
       Origin = 'PRD_ID'
     end
-    object QueryPRD_VLR_TOTAL: TFMTBCDField
+    object QueryPRD_VLR_TOTAL: TFloatField
       FieldName = 'PRD_VLR_TOTAL'
       Origin = 'PRD_VLR_TOTAL'
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
     object QueryPRD_CODIGO: TStringField
       FieldName = 'PRD_CODIGO'

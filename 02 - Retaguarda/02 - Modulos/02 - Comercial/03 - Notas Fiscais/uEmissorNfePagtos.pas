@@ -261,8 +261,8 @@ begin
 
          { Armazena a quantida de parcelas }
          QtdeParcelas         := FrEmissorNfeDataValor.ed_parcelas.AsInteger;
-         ValorParcela         := ClassNotaFiscal.SubTotal;
-         ValorParcelaDividido := ClassNotaFiscal.SubTotal / QtdeParcelas;
+         ValorParcela         := FrEmissorNfeDataValor.eValor.AsInteger;
+         ValorParcelaDividido := ValorParcela / QtdeParcelas;
 
          // Trunca o valor para duas casas decimais
          ValorParcelaDividido := Trunca(ValorParcelaDividido);

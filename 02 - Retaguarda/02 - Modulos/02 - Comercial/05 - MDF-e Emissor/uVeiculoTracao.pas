@@ -57,6 +57,7 @@ type
     procedure btnMotoristasClick(Sender: TObject);
     procedure QueryMD_TIP_CARROGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
+    procedure tabDetalhesShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -194,6 +195,12 @@ begin
          end;
       end;
    end;
+end;
+
+procedure TFrVeiculoTracao.tabDetalhesShow(Sender: TObject);
+begin
+   if cbUfVeiculo.CanFocus then
+      cbUfVeiculo.SetFocus;
 end;
 
 end.

@@ -190,7 +190,9 @@ uses
   uMotorista in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uMotorista.pas' {FrMotoristas},
   uEncerramento in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEncerramento.pas' {FrEncerramento},
   uEmissorNfeCancelar in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uEmissorNfeCancelar.pas' {FrEmissorNfeCancelar},
-  uEmissorMdfeCancelar in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMdfeCancelar.pas' {FrEmissorMdfeCancelar};
+  uEmissorMdfeCancelar in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uEmissorMdfeCancelar.pas' {FrEmissorMdfeCancelar},
+  uChaveNFe in '..\..\02 - Modulos\02 - Comercial\05 - MDF-e Emissor\uChaveNFe.pas' {FrChaveNFe},
+  uListagemNFe in '..\..\02 - Modulos\02 - Comercial\03 - Notas Fiscais\uListagemNFe.pas' {FrListagemNFe};
 
 {$R *.res}
 

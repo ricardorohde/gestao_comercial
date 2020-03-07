@@ -45,18 +45,17 @@ type
     tbDadosREC_ORIGEM: TIntegerField;
     tbDadosREC_CLIENTE: TStringField;
     tbDadosREC_DATA_REGISTRO: TDateField;
-    tbDadosREC_VALOR: TFMTBCDField;
-    tbDadosREC_VLR_ATUALIZADO: TFMTBCDField;
-    tbDadosREC_VLR_RECEBIDO: TFMTBCDField;
-    tbDadosREC_VLR_SALDO: TFMTBCDField;
+    tbDadosREC_VLR_ATUALIZADO: TSingleField;
+    tbDadosREC_VLR_RECEBIDO: TSingleField;
+    tbDadosREC_VLR_SALDO: TSingleField;
+    tbDadosREC_VALOR: TSingleField;
     procedure eAgrupadoChange(Sender: TObject);
     procedure RzDialogButtons1ClickOk(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure eDataIniExit(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
     procedure SelecionarCliente1Click(Sender: TObject);
-    procedure tbDadosCRB_STATUS_IIGetText(Sender: TField; var Text: string;
-      DisplayText: Boolean);
+    procedure tbDadosCRB_STATUS_IIGetText(Sender: TField; var Text: string; DisplayText: Boolean);
   private
     { Private declarations }
     Str_Inicial, Str : String;
@@ -85,7 +84,7 @@ procedure TFrFiltro_Data_Cli_Ctas_Receber.eDataIniExit(Sender: TObject);
 begin
    if eDataIni.Date > eDataFim.Date then
    begin
-      Application.MessageBox('A data Inicial n„o pode ser mair que a data Final.','TechCore-RTG',mb_IconStop or mb_Ok);
+      Application.MessageBox('A data Inicial n√£o pode ser mair que a data Final.','TechCore-RTG',mb_IconStop or mb_Ok);
       eDataini.SetFocus;
    end;
 end;
@@ -156,7 +155,7 @@ begin
    // Checa e retornou algum registro
    if tbDados.IsEmpty then
    begin
-      Application.MessageBox('N„o foi encontrado nenhum registro dentro dos par‚metros informados','TechCore-RTG',mb_IconStop or mb_Ok);
+      Application.MessageBox('N√£o foi encontrado nenhum registro dentro dos par√¢metros informados','TechCore-RTG',mb_IconStop or mb_Ok);
       tbDados.Close;
       Abort;
    end;

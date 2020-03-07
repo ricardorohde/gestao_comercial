@@ -40,6 +40,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure dsQueryStateChange(Sender: TObject);
     procedure RzDialogButtons1ClickOk(Sender: TObject);
+    procedure tabDetalhesShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -105,6 +106,12 @@ end;
 procedure TFrMotoristas.RzDialogButtons1ClickOk(Sender: TObject);
 begin
    Self.Close;
+end;
+
+procedure TFrMotoristas.tabDetalhesShow(Sender: TObject);
+begin
+   if txtCpf.CanFocus then
+      txtCpf.SetFocus;
 end;
 
 procedure TFrMotoristas.txtCpfExit(Sender: TObject);

@@ -24,7 +24,13 @@ object FrChavesNFe: TFrChavesNFe
     Height = 139
     Align = alClient
     DataSource = dsQuery
-    Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgAlwaysShowSelection]
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+    ParentFont = False
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -36,7 +42,7 @@ object FrChavesNFe: TFrChavesNFe
     SelectColumnsDialogStrings.OK = '&OK'
     SelectColumnsDialogStrings.NoSelectionWarning = 'At least one column must be visible!'
     EditControls = <>
-    RowsHeight = 17
+    RowsHeight = 19
     TitleRowHeight = 17
     Columns = <
       item
@@ -63,16 +69,20 @@ object FrChavesNFe: TFrChavesNFe
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 146
+      Width = 170
       Height = 30
       DataSource = dsQuery
-      VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel]
+      VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
       Align = alLeft
+      ConfirmDelete = False
       TabOrder = 3
     end
   end
   object Query: TFDQuery
+    Active = True
     AfterInsert = QueryAfterInsert
+    AfterEdit = QueryAfterEdit
+    BeforeDelete = QueryBeforeDelete
     IndexFieldNames = 'ID_C000705'
     MasterSource = FrDoctos.dsQuery
     MasterFields = 'ID'
@@ -89,7 +99,7 @@ object FrChavesNFe: TFrChavesNFe
         Name = 'ID'
         DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 18
       end>
     object QueryID: TIntegerField
       AutoGenerateValue = arAutoInc

@@ -23,6 +23,8 @@ type
     JvDBNavigator1: TJvDBNavigator;
     procedure QueryAfterInsert(DataSet: TDataSet);
     procedure FormShow(Sender: TObject);
+    procedure QueryBeforeDelete(DataSet: TDataSet);
+    procedure QueryAfterEdit(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -36,11 +38,38 @@ implementation
 
 {$R *.dfm}
 
-uses uDoctos, uModuloRet;
+uses uDoctos, uModuloRet, uChaveNFe;
+
+procedure TFrChavesNFe.QueryAfterEdit(DataSet: TDataSet);
+begin
+   FrChaveNFe := TFrChaveNFe.Create(self);
+   try
+      if FrChaveNFe.ShowModal = mrOk then
+         Query.Post
+      else
+         Query.Cancel
+   finally
+      FreeAndNil(FrChaveNFe);
+   end;
+end;
 
 procedure TFrChavesNFe.QueryAfterInsert(DataSet: TDataSet);
 begin
-   GridChave.SetFocus;
+   FrChaveNFe := TFrChaveNFe.Create(self);
+   try
+      if FrChaveNFe.ShowModal = mrOk then
+         Query.Post
+      else
+         Query.Cancel
+   finally
+      FreeAndNil(FrChaveNFe);
+   end;
+end;
+
+procedure TFrChavesNFe.QueryBeforeDelete(DataSet: TDataSet);
+begin
+   if Application.MessageBox('Tem certeza que deseja excluir este registro?','TechCore-RTG',mb_IconQuestion or mb_YesNo) = mrNo then
+      Abort;
 end;
 
 procedure TFrChavesNFe.FormShow(Sender: TObject);

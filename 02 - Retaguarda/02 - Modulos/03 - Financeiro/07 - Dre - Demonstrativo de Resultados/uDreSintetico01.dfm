@@ -399,7 +399,7 @@ object FrDreSintetico01: TFrDreSintetico01
       
         '   (SELECT PLN_CONTA_CODIGO || '#39' - '#39' || PLN_DESCRICAO FROM C0000' +
         '18 WHERE ID = TB0.ID_PLN) AS F_DESCRICAO,'
-      '   SUM(TB0.F_VALOR) AS F_VALOR,'
+      '   CAST(SUM(TB0.F_VALOR) AS FLOAT) AS F_VALOR,'
       '   CAST('#39'R'#39' AS CHAR) AS F_TIPO'
       'FROM'
       '(SELECT'
@@ -519,15 +519,13 @@ object FrDreSintetico01: TFrDreSintetico01
       ReadOnly = True
       Size = 65
     end
-    object QueryF_VALOR: TFMTBCDField
+    object QueryF_VALOR: TSingleField
       AutoGenerateValue = arDefault
       FieldName = 'F_VALOR'
       Origin = 'F_VALOR'
       ProviderFlags = []
       ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
     object QueryF_TIPO: TStringField
       AutoGenerateValue = arDefault

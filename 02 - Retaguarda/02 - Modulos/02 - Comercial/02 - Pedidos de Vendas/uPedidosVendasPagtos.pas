@@ -87,9 +87,9 @@ type
       procedure Outros1Click(Sender: TObject);
       procedure SP_EfetuarRateioAfterExecute(DataSet: TFDDataSet);
       procedure FormShow(Sender: TObject);
-    procedure tbDadosAfterDelete(DataSet: TDataSet);
-    procedure tbDadosAfterPost(DataSet: TDataSet);
-    procedure tbDadosBeforeDelete(DataSet: TDataSet);
+      procedure tbDadosAfterDelete(DataSet: TDataSet);
+      procedure tbDadosAfterPost(DataSet: TDataSet);
+      procedure tbDadosBeforeDelete(DataSet: TDataSet);
    private
       { Private declarations }
       procedure prcInserirFormaPagto(iFormaPagto: Integer);
@@ -264,7 +264,7 @@ begin
          // Armazena a quantida de parcelas
          QtdeParcelas         := FrPedidosVendasDataValor.ed_parcelas.AsInteger;
          ValorParcela         := FrPedidosVendasDataValor.eValor.AsInteger;
-         ValorParcelaDividido := FrPedidosVendasDataValor.eValor.AsInteger / QtdeParcelas;
+         ValorParcelaDividido := ValorParcela / QtdeParcelas;
 
          // Trunca o valor para duas casas decimais
          ValorParcelaDividido := Trunca(ValorParcelaDividido);

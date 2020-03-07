@@ -1053,13 +1053,26 @@ object FrRel_Vencto_Ctas_Receber: TFrRel_Vencto_Ctas_Receber
     FetchOptions.Cache = [fiBlobs, fiMeta]
     SQL.Strings = (
       'SELECT'
-      '   T1.*'
+      '    T1.ID,'
+      '    T1.ID_C000110,'
+      '    T1.ID_C000111,'
+      '    T1.ID_FORMA_PAGTO,'
+      '    T1.REC_DATA_RECEBTO,'
+      '    T1.REC_ANOTACOES,'
+      '    T1.REC_FORMA_PAGTO,'
+      '    CAST(T1.REC_SALDO AS FLOAT) AS REC_SALDO,'
+      '    CAST(T1.REC_VLR_JUROS AS FLOAT) AS REC_VLR_JUROS,'
+      '    CAST(T1.REC_VLR_MULTA AS FLOAT) AS REC_VLR_MULTA,'
+      '    CAST(T1.REC_VLR_ACRESCIMOS AS FLOAT) AS REC_VLR_ACRESCIMOS,'
+      '    CAST(T1.REC_VLR_DESCONTOS AS FLOAT) AS REC_VLR_DESCONTOS,'
+      '    CAST(T1.REC_VLR_CARTORIOS AS FLOAT) AS REC_VLR_CARTORIOS,'
+      '    CAST(T1.REC_VLR_RECEBIDO AS FLOAT) AS REC_VLR_RECEBIDO'
       'FROM'
-      '   C000112 AS T1'
+      '    C000112 AS T1'
       'WHERE'
-      '   T1.ID_C000111 = :ID_C11'
+      '    T1.ID_C000111 = :ID_C11'
       'ORDER BY'
-      '   T1.ID ASC')
+      '    T1.ID ASC')
     Left = 8
     Top = 80
     ParamData = <
@@ -1102,54 +1115,61 @@ object FrRel_Vencto_Ctas_Receber: TFrRel_Vencto_Ctas_Receber
       Origin = 'REC_FORMA_PAGTO'
       Size = 60
     end
-    object QueryPagtosREC_SALDO: TFMTBCDField
+    object QueryPagtosREC_SALDO: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_SALDO'
       Origin = 'REC_SALDO'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_JUROS: TFMTBCDField
+    object QueryPagtosREC_VLR_JUROS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_JUROS'
       Origin = 'REC_VLR_JUROS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_MULTA: TFMTBCDField
+    object QueryPagtosREC_VLR_MULTA: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_MULTA'
       Origin = 'REC_VLR_MULTA'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_ACRESCIMOS: TFMTBCDField
+    object QueryPagtosREC_VLR_ACRESCIMOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_ACRESCIMOS'
       Origin = 'REC_VLR_ACRESCIMOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_DESCONTOS: TFMTBCDField
+    object QueryPagtosREC_VLR_DESCONTOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_DESCONTOS'
       Origin = 'REC_VLR_DESCONTOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_CARTORIOS: TFMTBCDField
+    object QueryPagtosREC_VLR_CARTORIOS: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_CARTORIOS'
       Origin = 'REC_VLR_CARTORIOS'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
-    object QueryPagtosREC_VLR_RECEBIDO: TFMTBCDField
+    object QueryPagtosREC_VLR_RECEBIDO: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'REC_VLR_RECEBIDO'
       Origin = 'REC_VLR_RECEBIDO'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
   end
   object dsPagtos: TDataSource

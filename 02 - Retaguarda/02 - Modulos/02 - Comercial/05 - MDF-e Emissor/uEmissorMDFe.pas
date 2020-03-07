@@ -138,44 +138,44 @@ type
     Datafim: TJvDateEdit;
     Button1: TButton;
     eGrid: TJvDBGrid;
-      procedure pgControlChanging(Sender: TObject; var AllowChange: Boolean);
-      procedure FormClose(Sender: TObject; var Action: TCloseAction);
-      procedure FormCreate(Sender: TObject);
-      procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-      procedure QueryAfterPost(DataSet: TDataSet);
-      procedure QueryBeforeDelete(DataSet: TDataSet);
-      procedure actCadastrarExecute(Sender: TObject);
-      procedure actConsultarExecute(Sender: TObject);
-      procedure actPreVisualizarExecute(Sender: TObject);
-      procedure actSairExecute(Sender: TObject);
-      procedure actCadastrarUpdate(Sender: TObject);
-      procedure actAlterarUpdate(Sender: TObject);
-      procedure actGravarUpdate(Sender: TObject);
-      procedure eCpfEnter(Sender: TObject);
-      procedure eCodigoExit(Sender: TObject);
-      procedure eCodigoEnter(Sender: TObject);
-      procedure Button1Click(Sender: TObject);
-      procedure QueryMD_STATUSGetText(Sender: TField; var Text: string;
-      DisplayText: Boolean);
-      procedure eGridDrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
-      procedure QueryNewRecord(DataSet: TDataSet);
-      procedure actEnviarExecute(Sender: TObject);
-      procedure actEnviarUpdate(Sender: TObject);
-    procedure actPercursoExecute(Sender: TObject);
-    procedure actDocumentosExecute(Sender: TObject);
-    procedure actCabecalhoExecute(Sender: TObject);
-    procedure actVeiculosExecute(Sender: TObject);
-    procedure actEncerrarExecute(Sender: TObject);
-    procedure actEncerrarUpdate(Sender: TObject);
-    procedure ACBrMDFe1StatusChange(Sender: TObject);
-    procedure actCancelarExecute(Sender: TObject);
-    procedure actPrintCancelExecute(Sender: TObject);
-    procedure actPrintEnceramentoExecute(Sender: TObject);
-    procedure actPrintCancelUpdate(Sender: TObject);
-    procedure actPrintEnceramentoUpdate(Sender: TObject);
-    procedure actPercursoUpdate(Sender: TObject);
-    procedure actCancelarUpdate(Sender: TObject);
+   procedure pgControlChanging(Sender: TObject; var AllowChange: Boolean);
+   procedure FormClose(Sender: TObject; var Action: TCloseAction);
+   procedure FormCreate(Sender: TObject);
+   procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+   procedure QueryAfterPost(DataSet: TDataSet);
+   procedure QueryBeforeDelete(DataSet: TDataSet);
+   procedure actCadastrarExecute(Sender: TObject);
+   procedure actConsultarExecute(Sender: TObject);
+   procedure actPreVisualizarExecute(Sender: TObject);
+   procedure actSairExecute(Sender: TObject);
+   procedure actCadastrarUpdate(Sender: TObject);
+   procedure actAlterarUpdate(Sender: TObject);
+   procedure actGravarUpdate(Sender: TObject);
+   procedure eCpfEnter(Sender: TObject);
+   procedure eCodigoExit(Sender: TObject);
+   procedure eCodigoEnter(Sender: TObject);
+   procedure Button1Click(Sender: TObject);
+   procedure QueryMD_STATUSGetText(Sender: TField; var Text: string;
+   DisplayText: Boolean);
+   procedure eGridDrawColumnCell(Sender: TObject; const Rect: TRect;
+   DataCol: Integer; Column: TColumn; State: TGridDrawState);
+   procedure QueryNewRecord(DataSet: TDataSet);
+   procedure actEnviarExecute(Sender: TObject);
+   procedure actEnviarUpdate(Sender: TObject);
+   procedure actPercursoExecute(Sender: TObject);
+   procedure actDocumentosExecute(Sender: TObject);
+   procedure actCabecalhoExecute(Sender: TObject);
+   procedure actVeiculosExecute(Sender: TObject);
+   procedure actEncerrarExecute(Sender: TObject);
+   procedure actEncerrarUpdate(Sender: TObject);
+   procedure ACBrMDFe1StatusChange(Sender: TObject);
+   procedure actCancelarExecute(Sender: TObject);
+   procedure actPrintCancelExecute(Sender: TObject);
+   procedure actPrintEnceramentoExecute(Sender: TObject);
+   procedure actPrintCancelUpdate(Sender: TObject);
+   procedure actPrintEnceramentoUpdate(Sender: TObject);
+   procedure actPercursoUpdate(Sender: TObject);
+   procedure actCancelarUpdate(Sender: TObject);
       private
       { Private declarations }
       procedure CarregaParametrosMDFE(id : integer);
@@ -478,10 +478,10 @@ begin
                begin
                   try
                      Query.Edit;
-                     Query.FieldByName('MD_SEF_ENC_EVT_XML').AsAnsiString := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.XML;
-                     Query.FieldByName('MD_SEF_ENC_PROTOCOLO').AsString   := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.detEvento.nProt;
-                     Query.FieldByName('MD_SEF_ENC_DATA').AsDateTime      := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.dhEvento;
-                     Query.FieldByName('MD_STATUS').Asinteger             := 6; // mdfe encerrada
+                     Query.FieldByName('md_sef_enc_data').AsDateTime      := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.dhEvento;
+                     Query.FieldByName('md_sef_enc_protocolo').AsString   := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.detEvento.nProt;
+                     Query.FieldByName('md_sef_enc_evt_xml').AsAnsiString := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.XML;
+                     Query.FieldByName('md_status').AsInteger             := 6;
                      Query.Post;
                   except
                      Query.Cancel;
@@ -558,23 +558,22 @@ begin
                try
                   // Armazena os dados de retorno do cancelamento
                   Query.Edit;
-                  Query.FieldByName('md_sef_enc_data').AsDateTime      := ACBrMDFe1.WebServices.EnvEvento.EventoRetorno.retEvento.Items[0].RetInfEvento.dhRegEvento;
-                  Query.FieldByName('md_sef_enc_protocolo').AsString   := ACBrMDFe1.WebServices.EnvEvento.EventoRetorno.retEvento.Items[0].RetInfEvento.nProt;
-                  Query.FieldByName('md_sef_enc_env_xml').AsAnsiString := ACBrMDFe1.WebServices.EnvEvento.EventoRetorno.retEvento.Items[0].RetInfEvento.Xml;
+                  Query.FieldByName('md_sef_enc_data').AsDateTime      := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.dhEvento;
+                  Query.FieldByName('md_sef_enc_protocolo').AsString   := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.InfEvento.detEvento.nProt;
+                  Query.FieldByName('md_sef_enc_evt_xml').AsAnsiString := ACBrMDFe1.WebServices.Consulta.procEventoMDFe.Items[0].RetEventoMDFe.XML;
                   Query.FieldByName('md_status').AsInteger             := 6;
-
                   Query.Post;
 
-                  Application.MessageBox('Cancelamento efetuado com sucesso.', 'TechCore-RTG', mb_IconInformation or mb_ok);
+                  Application.MessageBox('Encerramento efetuado com sucesso.', 'TechCore-RTG', mb_IconInformation or mb_ok);
 
                except
                   on E: Exception do
-                     Application.MessageBox('Cancelamento efetuado com sucesso, porem houveram erros ao atualizar o banco de dados.', 'TechCore-RTG', mb_IconInformation or mb_ok);
+                     Application.MessageBox('Encerramento efetuado com sucesso, porem houveram erros ao atualizar o banco de dados.', 'TechCore-RTG', mb_IconInformation or mb_ok);
                end;
 
             end
             else
-               raise Exception.Create('Cancelamento efetuado com sucesso, porem houveram erros ao atualizar o banco de dados.');
+               raise Exception.Create('Encerramento efetuado com sucesso, porem houveram erros ao atualizar o banco de dados.');
          end;
 
       end;
@@ -690,8 +689,13 @@ begin
          end;
    end;
 
-   // Parâemtros da nota fiscal
-   if not Assigned(ConfigNFe) then
+   // parâmetros da nota fiscal
+   if Assigned(ConfigNFe) then
+   begin
+      FreeAndNil(ConfigNFe);
+      ConfigNFe := TParametrosNFe.Create(id_emitente);
+   end
+   else
       ConfigNFe := TParametrosNFe.Create(id_emitente);
 
    with ACBrMDFe1.Configuracoes do
@@ -1022,7 +1026,7 @@ begin
    QtdeNfe := 0;
 
    // configura o emissor
-   ConfiguraEmissorMDFe(QueryEmitente.FieldByName('id').AsInteger);
+   ConfiguraEmissorMDFe(Query.FieldByName('id_emp').AsInteger);
 
    ACBrMDFe1.Manifestos.Clear;
 
@@ -1222,8 +1226,8 @@ begin
          if ACBrMDFe1.WebServices.Retorno.cStat = 100 then
          begin
             Query.Edit;
-            Query.FieldByName('md_status').AsInteger := 2;
-            Query.FieldByName('md_sef_xml').AsString := ACBrMDFe1.Manifestos.Items[0].XML;
+            Query.FieldByName('md_status').AsInteger       := 2;
+            Query.FieldByName('md_sef_xml').AsString       := ACBrMDFe1.Manifestos.Items[0].XML;
             Query.FieldByName('md_sef_recibo').AsString    := ACBrMDFe1.WebServices.Retorno.Protocolo;
             Query.FieldByName('md_sef_protocolo').AsString := ACBrMDFe1.WebServices.Retorno.Protocolo;
             Query.Post;

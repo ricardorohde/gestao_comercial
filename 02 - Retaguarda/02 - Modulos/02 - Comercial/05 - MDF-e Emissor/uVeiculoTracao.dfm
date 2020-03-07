@@ -23,7 +23,7 @@ object FrVeiculoTracao: TFrVeiculoTracao
     Top = 3
     Width = 567
     Height = 242
-    ActivePage = tabVeiculos
+    ActivePage = tabDetalhes
     Align = alClient
     TabOrder = 0
     OnChanging = pgControlChanging
@@ -118,6 +118,7 @@ object FrVeiculoTracao: TFrVeiculoTracao
     object tabDetalhes: TTabSheet
       Caption = 'Detalhes'
       ImageIndex = 1
+      OnShow = tabDetalhesShow
       object GroupBox4: TGroupBox
         Left = 3
         Top = 2
@@ -311,10 +312,10 @@ object FrVeiculoTracao: TFrVeiculoTracao
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 190
+      Width = 198
       Height = 30
       DataSource = dsQuery
-      VisibleButtons = [nbInsert, nbDelete, nbPost, nbCancel]
+      VisibleButtons = [nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
       Align = alLeft
       ConfirmDelete = False
       TabOrder = 0
@@ -408,11 +409,13 @@ object FrVeiculoTracao: TFrVeiculoTracao
       OnGetText = QueryMD_TIP_RODGetText
     end
     object QueryMD_TIP_CARRO: TIntegerField
+      Alignment = taLeftJustify
       FieldName = 'MD_TIP_CARRO'
       Origin = 'MD_TIP_CARRO'
       OnGetText = QueryMD_TIP_CARROGetText
     end
     object QueryMD_UF: TStringField
+      Alignment = taCenter
       FieldName = 'MD_UF'
       Origin = 'MD_UF'
       FixedChar = True
