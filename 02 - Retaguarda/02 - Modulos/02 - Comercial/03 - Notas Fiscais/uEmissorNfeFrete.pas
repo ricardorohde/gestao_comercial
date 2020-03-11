@@ -79,27 +79,6 @@ end;
 
 procedure TFremissorNfeFrete.RzDialogButtons1ClickOk(Sender: TObject);
 begin
-   if ( not ( eTipoFrete.ItemIndex in [3,4,5] ) ) and ( eTransportadora.Text = '' )  then
-   begin
-      Application.MessageBox('Erro, Selecione uma transportadora e informe os dados do veiculo.','TechCore-RTG',mb_IconStop or mb_Ok);
-      eTransportadora.SetFocus;
-      Abort;
-   end;
-
-   if ( eTipoFrete.ItemIndex <> 5 ) and ( OnlyNumber( ePlacaVeiculo.Text ) = '' )  then
-   begin
-      Application.MessageBox('Erro, Informe a placa do veículo.','TechCore-RTG',mb_IconStop or mb_Ok);
-      ePlacaVeiculo.SetFocus;
-      Abort;
-   end;
-
-   if ( eTipoFrete.ItemIndex <> 5 ) and ( eUFVeiculo.Text = '' )  then
-   begin
-      Application.MessageBox('Erro, Informe a placa do veículo.','TechCore-RTG',mb_IconStop or mb_Ok);
-      eUFVeiculo.SetFocus;
-      Abort;
-   end;
-
    Self.ModalResult := mrOk;
 end;
 

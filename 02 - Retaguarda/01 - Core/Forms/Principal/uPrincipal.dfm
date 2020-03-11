@@ -1795,7 +1795,6 @@ object FrPrincipal: TFrPrincipal
       Index = 2
     end
     object dxRibbon1Tab4: TdxRibbonTab
-      Active = True
       Caption = 'Produtos'
       Groups = <
         item
@@ -1816,6 +1815,7 @@ object FrPrincipal: TFrPrincipal
       Index = 3
     end
     object dxRibbon1Tab2: TdxRibbonTab
+      Active = True
       Caption = 'Gest'#227'o'
       Groups = <
         item
