@@ -22882,7 +22882,7 @@ object FrPrincipal: TFrPrincipal
     Height = 42
     Align = alTop
     BevelOuter = bvNone
-    Color = clBlack
+    Color = 8404992
     ParentBackground = False
     TabOrder = 0
     object lbTitulo: TLabel
@@ -22941,7 +22941,7 @@ object FrPrincipal: TFrPrincipal
     Height = 41
     BevelOuter = bvNone
     Caption = 'MENU INICIAL'
-    Color = clTeal
+    Color = 8404992
     Font.Charset = ANSI_CHARSET
     Font.Color = clWhite
     Font.Height = -21
