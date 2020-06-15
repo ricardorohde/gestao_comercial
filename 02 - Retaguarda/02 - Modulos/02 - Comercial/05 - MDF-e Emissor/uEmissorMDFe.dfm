@@ -401,13 +401,12 @@ object FrEmissorMDFe: TFrEmissorMDFe
         Expanded = False
         FieldName = 'MD_SEF_CHAVE'
         Title.Caption = 'Chave'
-        Width = 591
+        Width = 608
         Visible = True
       end>
     Delphi2010OptionsMigrated = True
   end
   object Query: TFDQuery
-    Active = True
     AfterPost = QueryAfterPost
     BeforeDelete = QueryBeforeDelete
     OnNewRecord = QueryNewRecord
@@ -857,6 +856,12 @@ object FrEmissorMDFe: TFrEmissorMDFe
     MargemSuperior = 8.000000000000000000
     MargemEsquerda = 6.000000000000000000
     MargemDireita = 5.099999999999999000
+    ExpandeLogoMarcaConfig.Altura = 0
+    ExpandeLogoMarcaConfig.Esquerda = 0
+    ExpandeLogoMarcaConfig.Topo = 0
+    ExpandeLogoMarcaConfig.Largura = 0
+    ExpandeLogoMarcaConfig.Dimensionar = False
+    ExpandeLogoMarcaConfig.Esticar = True
     CasasDecimais.Formato = tdetInteger
     CasasDecimais.qCom = 2
     CasasDecimais.vUnCom = 2

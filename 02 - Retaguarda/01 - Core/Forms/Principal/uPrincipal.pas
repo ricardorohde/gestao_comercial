@@ -22,7 +22,8 @@ uses
    VCLTee.Chart, VCLTee.DBChart, VCLTee.TeeDBCrossTab, DateUtils,
    cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters,
    dxRibbonSkins, dxRibbonCustomizationForm, cxClasses, dxRibbon, cxStyles,
-   dxBar, dxCustomTileControl, dxTileBar, Vcl.PlatformDefaultStyleActnCtrls;
+   dxBar, dxCustomTileControl, dxTileBar, Vcl.PlatformDefaultStyleActnCtrls,
+  dxSkinsCore;
 
 type
    TFrPrincipal = class(TForm)

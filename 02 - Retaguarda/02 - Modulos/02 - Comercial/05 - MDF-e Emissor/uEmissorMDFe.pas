@@ -942,19 +942,6 @@ begin
    xQuery.Connection := FrModuloRet.DBConexao;
    try
 
-      // percurso
-      xQuery.Close;
-      xQuery.SQL.Clear;
-      xQuery.SQL.Add('select 1 from C000702 where id_C000700 = :id');
-      xQuery.ParamByName('id').AsInteger := Query.FieldByName('id').AsInteger;
-      xQuery.Open();
-
-      if xQuery.IsEmpty then
-      begin
-         Application.MessageBox('Não foram informados os percursos do transporte.','TechCore-RTG',mb_IconWarning or mb_ok);
-         Abort;
-      end;
-
       // documentos
       xQuery.Close;
       xQuery.SQL.Clear;
@@ -1104,13 +1091,16 @@ begin
          xQuery.Open();
          xQuery.First;
 
-         repeat
-            with Ide.infPercurso.New do
-            begin
-               UFPer := xQuery.FieldByName('md_percurso').AsString;
-               xQuery.Next;
-            end;
-         until (xQuery.Eof);
+         if not xQuery.IsEmpty then
+         begin
+           repeat
+              with Ide.infPercurso.New do
+              begin
+                 UFPer := xQuery.FieldByName('md_percurso').AsString;
+                 xQuery.Next;
+              end;
+           until (xQuery.Eof);
+         end;
 
          // Veiculo de tração
          xQuery.Close;
