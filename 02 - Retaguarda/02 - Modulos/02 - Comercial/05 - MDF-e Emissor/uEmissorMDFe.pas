@@ -943,7 +943,7 @@ begin
    try
 
       // percurso
-      xQuery.Close;
+      {xQuery.Close;
       xQuery.SQL.Clear;
       xQuery.SQL.Add('select 1 from C000702 where id_C000700 = :id');
       xQuery.ParamByName('id').AsInteger := Query.FieldByName('id').AsInteger;
@@ -953,7 +953,7 @@ begin
       begin
          Application.MessageBox('Não foram informados os percursos do transporte.','TechCore-RTG',mb_IconWarning or mb_ok);
          Abort;
-      end;
+      end; }
 
       // documentos
       xQuery.Close;
@@ -1104,13 +1104,16 @@ begin
          xQuery.Open();
          xQuery.First;
 
-         repeat
-            with Ide.infPercurso.New do
-            begin
-               UFPer := xQuery.FieldByName('md_percurso').AsString;
-               xQuery.Next;
-            end;
-         until (xQuery.Eof);
+         if not xQuery.IsEmpty then
+         begin
+            repeat
+               with Ide.infPercurso.New do
+               begin
+                  UFPer := xQuery.FieldByName('md_percurso').AsString;
+                  xQuery.Next;
+               end;
+            until (xQuery.Eof);
+         end;
 
          // Veiculo de tração
          xQuery.Close;

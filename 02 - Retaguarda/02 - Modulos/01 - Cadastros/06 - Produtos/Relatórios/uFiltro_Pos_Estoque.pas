@@ -35,13 +35,13 @@ type
     eCodigoIni: TRzSpinEdit;
     eCodigoFim: TRzSpinEdit;
     Label1: TLabel;
-    QueryPRD_VLR_CUSTO: TBCDField;
     QueryPRD_QTDE_INICIAL: TBCDField;
     QueryPRD_QTDE_ENTRADA: TBCDField;
     QueryPRD_QTDE_SAIDA: TBCDField;
     QueryPRD_QTDE_ATUAL: TBCDField;
     RzCheckBox1: TRzCheckBox;
-    QueryPRD_CUSTO_TOTAL: TFMTBCDField;
+    QueryPRD_VLR_CUSTO: TSingleField;
+    QueryPRD_CUSTO_TOTAL: TSingleField;
     procedure eChkGruposClick(Sender: TObject);
     procedure eChkProdutoClick(Sender: TObject);
     procedure RzDialogButtons1ClickOk(Sender: TObject);

@@ -93,16 +93,16 @@ begin
       0:
          begin
             try
-               FrRel_Movto_Estoque_Entrada :=
-                 TFrRel_Movto_Estoque_Entrada.Create(self);
+               FrRel_Movto_Estoque_Entrada := TFrRel_Movto_Estoque_Entrada.Create(self);
+
                if RzCheckBox1.Checked then
                   FrRel_Movto_Estoque_Entrada.RLGroup1.DataFields := 'PRD_GRUPO'
                else
                   FrRel_Movto_Estoque_Entrada.RLGroup1.DataFields := EmptyStr;
 
-               if FrRel_Movto_Estoque_Entrada.CarregarDados(eDataIni.Date,
-                 eDatafim.Date) then
+               if FrRel_Movto_Estoque_Entrada.CarregarDados(eDataIni.Date, eDatafim.Date) then
                   FrRel_Movto_Estoque_Entrada.Print.PreviewModal;
+
             finally
                FreeAndNil(FrRel_Movto_Estoque_Entrada);
             end;
@@ -112,13 +112,13 @@ begin
          begin
             try
                FrRel_Movto_Estoque := TFrRel_Movto_Estoque.Create(self);
+
                if RzCheckBox1.Checked then
                   FrRel_Movto_Estoque.RLGroup1.DataFields := 'PRD_GRUPO'
                else
                   FrRel_Movto_Estoque.RLGroup1.DataFields := EmptyStr;
 
-               if FrRel_Movto_Estoque.CarregarDados(eDataIni.Date, eDatafim.Date)
-               then
+               if FrRel_Movto_Estoque.CarregarDados(eDataIni.Date, eDatafim.Date) then
                   FrRel_Movto_Estoque.Print.PreviewModal;
             finally
                FreeAndNil(FrRel_Movto_Estoque);

@@ -151,14 +151,14 @@ object FrFiltro_Pos_Estoque: TFrFiltro_Pos_Estoque
       '   T1.PRD_DESCRICAO,'
       '   T1.PRD_UNIDADE,'
       '   T1.PRD_NCM,'
-      '   T1.PRD_VLR_CUSTO,'
+      '   CAST(T1.PRD_VLR_CUSTO AS FLOAT) AS PRD_VLR_CUSTO,'
       '   T2.QTDE_INICIAL AS PRD_QTDE_INICIAL,'
       '   T2.QTDE_ENTRADA AS PRD_QTDE_ENTRADA,'
       '   T2.QTDE_SAIDA   AS PRD_QTDE_SAIDA,'
       '   T2.QTDE_ATUAL   AS PRD_QTDE_ATUAL,'
       
-        '   CAST((T1.PRD_VLR_CUSTO * T2.QTDE_ATUAL) AS NUMERIC(15,2)) AS ' +
-        'PRD_CUSTO_TOTAL'
+        '   CAST((T1.PRD_VLR_CUSTO * T2.QTDE_ATUAL) AS Float) AS PRD_CUST' +
+        'O_TOTAL'
       'FROM'
       '   C000405 AS T1'
       'JOIN'
@@ -250,22 +250,21 @@ object FrFiltro_Pos_Estoque: TFrFiltro_Pos_Estoque
       DisplayFormat = ',0.00'
       Precision = 18
     end
-    object QueryPRD_VLR_CUSTO: TBCDField
+    object QueryPRD_VLR_CUSTO: TSingleField
+      AutoGenerateValue = arDefault
       FieldName = 'PRD_VLR_CUSTO'
       Origin = 'PRD_VLR_CUSTO'
+      ProviderFlags = []
+      ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
     end
-    object QueryPRD_CUSTO_TOTAL: TFMTBCDField
-      Alignment = taLeftJustify
+    object QueryPRD_CUSTO_TOTAL: TSingleField
       AutoGenerateValue = arDefault
       FieldName = 'PRD_CUSTO_TOTAL'
       Origin = 'PRD_CUSTO_TOTAL'
       ProviderFlags = []
       ReadOnly = True
       DisplayFormat = ',0.00'
-      Precision = 18
-      Size = 2
     end
   end
   object Pop00: TPopupMenu
